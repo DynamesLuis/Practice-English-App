@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LinguaLeap - Practice</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13a4ec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101c22",
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="flex flex-col min-h-screen">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-primary/20 dark:border-primary/30 px-10 py-4">
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="text-2xl font-bold text-gray-900 dark:text-white">LinguaLeap</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+<a class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Inicio</a>
+<a class="text-primary font-bold" href="#">Práctica</a>
+<a class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Vocabulario</a>
+<a class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" href="#">Progreso</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center size-10 rounded-full bg-background-light dark:bg-background-dark hover:bg-primary/10 dark:hover:bg-primary/20 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDz2u5mlzbOYa-E1onXsC2gyLV2rXBX2CfV2w2UgEaBm8Ipt_V2GSTb-1Sw4xHY4hPYUE2QYvziRfdm-rCrv5F19rcavSY8jM5yuN-SVhYjSMg2x2JL7U0CYlS1PnLfg1riP3aeKaoui91zUu-__HlVP_CWkstWbaFXiDo4ki3sBzmoB48FbuhFri5TnDj4C4WjlqWHPUWEkQahdR1bgmz_xTdl-SHiSn3oxCD-mn27_un60w3KRBXh6LagF_QTQBE-vlgca8Su9qbW");'></div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+<div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-6">
+<a class="hover:text-primary" href="#">Práctica</a>
+<span class="material-symbols-outlined text-base">chevron_right</span>
+<span class="font-medium text-gray-700 dark:text-gray-200">Texto Seleccionado</span>
+</div>
+<div class="bg-white dark:bg-black/20 p-8 rounded-xl shadow-sm">
+<div class="flex justify-between items-start mb-6">
+<h2 class="text-3xl font-bold text-gray-900 dark:text-white">El Misterio del Reloj Antiguo</h2>
+</div>
+<div class="text-lg/relaxed text-gray-700 dark:text-gray-300 space-y-6 selection:bg-primary/30">
+<p>En una pequeña ciudad, un reloj antiguo en la plaza central comenzó a funcionar de nuevo después de años de estar detenido. Los habitantes, intrigados, notaron que cada vez que el reloj daba la hora, un pequeño evento inusual ocurría en la ciudad. Un día, marcó las tres, y un <mark class="bg-primary/20 rounded cursor-pointer hover:bg-primary/30 transition-colors">gato callejero</mark> apareció en la puerta de la panadería, maullando de forma extraña. Al día siguiente, a las cuatro, un grupo de niños encontró una <mark class="bg-primary/20 rounded cursor-pointer hover:bg-primary/30 transition-colors">moneda antigua</mark> en el parque. La gente empezó a creer que el reloj tenía algún tipo de magia o que estaba conectado con el <mark class="bg-primary/20 rounded cursor-pointer hover:bg-primary/30 transition-colors">destino</mark> de la ciudad.</p>
+<p>Un joven historiador, llamado Alex, decidió investigar el origen del reloj y descubrir el significado de los eventos. Pasó días en la biblioteca local, revisando viejos documentos y hablando con los ancianos del lugar. Finalmente, encontró una leyenda que hablaba de un <mark class="bg-primary/20 rounded cursor-pointer hover:bg-primary/30 transition-colors">relojero</mark> que había creado el reloj con la intención de proteger la ciudad. Cada hora que marcaba estaba relacionada con un evento que había ocurrido en el pasado o que ocurriría en el futuro.</p>
+<p>Alex se dio cuenta de que el reloj no solo mostraba la hora, sino que también contaba la historia de la ciudad. Decidió compartir su descubrimiento con los habitantes, quienes se sintieron orgullosos de su historia y agradecidos por la protección del reloj. A partir de ese día, cada vez que el reloj marcaba una hora, la gente se reunía en la plaza para presenciar el evento y recordar su pasado.</p>
+</div>
+<div class="mt-10 pt-6 border-t border-primary/20 dark:border-primary/30">
+<h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Opciones de Lectura</h3>
+<div class="space-y-6">
+<div class="@container">
+<div class="flex flex-col @[320px]:flex-row @[320px]:items-center justify-between gap-4">
+<label class="text-sm font-medium text-gray-700 dark:text-gray-300" for="font-size">Tamaño de Fuente</label>
+<div class="flex items-center gap-4 w-full @[320px]:w-auto @[320px]:max-w-xs flex-1">
+<input class="w-full h-2 bg-primary/20 rounded-lg appearance-none cursor-pointer accent-primary" id="font-size" max="24" min="12" type="range" value="18"/>
+<span class="text-sm font-semibold text-gray-800 dark:text-white w-6 text-center">18</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<label class="text-sm font-medium text-gray-700 dark:text-gray-300">Modo de Lectura</label>
+<div class="flex items-center gap-2 p-1 rounded-full bg-background-light dark:bg-background-dark">
+<button class="flex items-center gap-2 px-3 py-1 rounded-full text-sm font-semibold bg-primary text-white">
+<span class="material-symbols-outlined text-base">light_mode</span>
+                                    Claro
+                                </button>
+<button class="flex items-center gap-2 px-3 py-1 rounded-full text-sm font-semibold text-gray-600 dark:text-gray-300 hover:bg-primary/10 dark:hover:bg-primary/20">
+<span class="material-symbols-outlined text-base">dark_mode</span>
+                                    Oscuro
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

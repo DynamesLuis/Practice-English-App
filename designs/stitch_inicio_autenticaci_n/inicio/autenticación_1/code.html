@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LinguaLeap - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13a4ec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101c22",
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Work Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-800 dark:text-gray-200">
+<div class="flex flex-col min-h-screen">
+<header class="border-b border-gray-200 dark:border-gray-700">
+<nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="text-2xl font-bold text-gray-900 dark:text-white">LinguaLeap</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+<span class="material-symbols-outlined text-gray-600 dark:text-gray-300">
+                            notifications
+                        </span>
+</button>
+<div class="flex items-center gap-2">
+<img alt="User avatar" class="h-8 w-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfnWuASiGEa0wEBRG7LdeVqPv4gssUDnQ0nqEDhCjzqlqY5IlGRPBjr8JkqimxvMCNmVDIBn9SQnLNH-rNzDpg7lHQ1gBYBJuVRRBRhgdVGIehl71F9VmHEbVbQ771RGBOLwLBYXI5Mqkf50SCZaWA_h8tdl-_LqYdStheIz0Kg8WEuouJYCoeJFyQP5DHaQBA-8g5HEK27hEpLsEKzxoT2oNs0M3tmtShVNgavjyLJgNrxjvjz2YwoZzLq8Udrz26ZZAmGntojYR_"/>
+<span class="font-semibold text-gray-900 dark:text-white">John Doe</span>
+</div>
+</div>
+</nav>
+</header>
+<main class="flex-grow container mx-auto px-6 py-8">
+<h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Your Progress</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg flex items-center gap-6">
+<div class="p-3 bg-primary/20 rounded-full">
+<span class="material-symbols-outlined text-primary text-3xl">
+                            school
+                        </span>
+</div>
+<div>
+<p class="text-gray-500 dark:text-gray-400 text-sm">Words Learned</p>
+<p class="text-2xl font-bold text-gray-900 dark:text-white">1,250</p>
+</div>
+</div>
+<div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg flex items-center gap-6">
+<div class="p-3 bg-green-500/20 rounded-full">
+<span class="material-symbols-outlined text-green-500 text-3xl">
+                            timer
+                        </span>
+</div>
+<div>
+<p class="text-gray-500 dark:text-gray-400 text-sm">Reading Time</p>
+<p class="text-2xl font-bold text-gray-900 dark:text-white">78h 32m</p>
+</div>
+</div>
+<div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg flex items-center gap-6">
+<div class="p-3 bg-yellow-500/20 rounded-full">
+<span class="material-symbols-outlined text-yellow-500 text-3xl">
+                            trending_up
+                        </span>
+</div>
+<div>
+<p class="text-gray-500 dark:text-gray-400 text-sm">Current Streak</p>
+<p class="text-2xl font-bold text-gray-900 dark:text-white">42 Days</p>
+</div>
+</div>
+<div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg flex items-center gap-6">
+<div class="p-3 bg-red-500/20 rounded-full">
+<span class="material-symbols-outlined text-red-500 text-3xl">
+                            book
+                        </span>
+</div>
+<div>
+<p class="text-gray-500 dark:text-gray-400 text-sm">Texts Read</p>
+<p class="text-2xl font-bold text-gray-900 dark:text-white">153</p>
+</div>
+</div>
+</div>
+<div class="mt-8 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+<h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Overall Progress</h3>
+<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4">
+<div class="bg-primary h-4 rounded-full" style="width: 75%;"></div>
+</div>
+<p class="text-right mt-2 text-sm text-gray-500 dark:text-gray-400">75% to next level</p>
+</div>
+<div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+<h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Recent Activity</h3>
+<ul class="space-y-4">
+<li class="flex items-center gap-4">
+<div class="p-2 bg-primary/20 rounded-full">
+<span class="material-symbols-outlined text-primary">menu_book</span>
+</div>
+<div>
+<p class="font-semibold text-gray-900 dark:text-white">Read "The Little Prince"</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">2 hours ago</p>
+</div>
+</li>
+<li class="flex items-center gap-4">
+<div class="p-2 bg-green-500/20 rounded-full">
+<span class="material-symbols-outlined text-green-500">spellcheck</span>
+</div>
+<div>
+<p class="font-semibold text-gray-900 dark:text-white">Completed vocabulary quiz</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">1 day ago</p>
+</div>
+</li>
+<li class="flex items-center gap-4">
+<div class="p-2 bg-primary/20 rounded-full">
+<span class="material-symbols-outlined text-primary">menu_book</span>
+</div>
+<div>
+<p class="font-semibold text-gray-900 dark:text-white">Read "A Short History of Nearly Everything"</p>
+<p class="text-sm text-gray-500 dark:text-gray-400">3 days ago</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+<h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Words to Review</h3>
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary/20 text-primary text-sm font-medium px-3 py-1 rounded-full">eloquent</span>
+<span class="bg-primary/20 text-primary text-sm font-medium px-3 py-1 rounded-full">serendipity</span>
+<span class="bg-primary/20 text-primary text-sm font-medium px-3 py-1 rounded-full">resilience</span>
+<span class="bg-primary/20 text-primary text-sm font-medium px-3 py-1 rounded-full">ubiquitous</span>
+<span class="bg-primary/20 text-primary text-sm font-medium px-3 py-1 rounded-full">ephemeral</span>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>
