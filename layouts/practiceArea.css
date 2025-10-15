@@ -1,6 +1,7 @@
 :root {
     --primary: #13a4ec;
     --primary-hover: #eaf5fd;
+    --range-bg: #bee0f8;
     --border-hover: #e5e7eb;
     --background-light: #f6f7f8;
     --background-dark: #101c22;
@@ -110,8 +111,8 @@ main>p {
 
 .vocabulary-practice {
     margin-top: 2em;
-    /*display: block*/
-    display: none;
+    display: block;
+    /* display: none; */
 }
 
 .show-btn {
@@ -227,5 +228,69 @@ main>p {
 /*text practice*/
 
 .text-practice {
-    display: block;
+    /* display: block; */
+    display: none;
+    margin-top: 2em;
+    background-color: white;
+    padding: 2em;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.text-practice h3 {
+    font-size: 2rem;
+}
+
+.text-practice > p {
+    margin-top: 2em;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    color: var(--font-secundary);
+    font-weight: 500;
+}
+
+.text-practice h4 {
+    margin-top: 2em;
+}
+
+.fontsize-options {
+    margin-top: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fontsize-options> label {
+    font-weight: 700;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 300px;
+  height: 10px;
+  border-radius: 5px;  
+  background: var(--range-bg);
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  margin-right: 1em;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%; 
+  background: var(--primary);
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
 }
