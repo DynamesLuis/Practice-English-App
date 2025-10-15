@@ -18,6 +18,8 @@ body {
     background: var(--background-light);
 }
 
+/*header*/
+
 body header {
     display: flex;
     justify-content: space-between;
@@ -40,6 +42,17 @@ body header nav a {
     }
 }
 
+header .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3em;
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+/*header*/
+
 main {
     display: flex;
     flex-direction: column;
@@ -56,14 +69,6 @@ main section h2 {
     font-size: 2em;
 }
 
-header .logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: .3em;
-    font-size: 1.4em;
-    font-weight: 600;
-}
 
 main section p {
     margin-top: 1em;

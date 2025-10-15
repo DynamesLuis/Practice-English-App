@@ -5,22 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="addWord.css">
 </head>
 
 <body>
+    <header>
+        <p class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#13a4ec"
+                class="icon icon-tabler icons-tabler-filled icon-tabler-star">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path
+                    d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
+            </svg>
+            EnglishPractice
+        </p>
+        <nav>
+            <a href="">Home</a>
+            <a href="">Agregar</a>
+            <a href="">Practicar</a>
+        </nav>
+        <p>image</p>
+    </header>
     <main>
         <section>
-            <h3>Add New Word</h3>
-            <form action="">
-                <label for="">Word</label>
-                <input type="text">
-                <label for="">Meaning</label>
-                <textarea name="" id=""></textarea>
-                <label for="">Example</label>
-                <textarea name="" id=""></textarea>
+            <h2>Add New Word</h2>
+            <form action="" class="word-form">
+                <label for="word">Word</label>
+                <input type="text" id="word">
+                <label for="meaning">Meaning</label>
+                <textarea name="" id="meaning"></textarea>
+                <label for="example">Example</label>
+                <textarea name="" id="example"></textarea>
                 <button>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M12 5l0 14" />
@@ -31,7 +49,7 @@
             </form>
         </section>
         <section>
-            <h2>Your Vocabylary</h2>
+            <h2>Your Vocabylary List</h2>
             <table>
                 <thead>
                     <tr>
@@ -48,7 +66,7 @@
                         <th>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus quas autem a. Vel ipsum
                             optio earum amet facere tempora ad!</th>
                         <th><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    fill="none" stroke="#13a4ec" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"
                                     class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -56,7 +74,7 @@
                                     <path d="M13.5 6.5l4 4" />
                                 </svg></button></th>
                         <th><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    fill="none" stroke="#ec3e13" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"
                                     class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -73,8 +91,8 @@
                             necessitatibus cum natus ipsum delectus fuga libero rerum iste.</th>
                         <th>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus quas autem a. Vel ipsum
                             optio earum amet facere tempora ad!</th>
-                            <th><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        <th><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="#13a4ec" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"
                                     class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -82,7 +100,7 @@
                                     <path d="M13.5 6.5l4 4" />
                                 </svg></button></th>
                         <th><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    fill="none" stroke="#ec3e13" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"
                                     class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -99,8 +117,8 @@
                             necessitatibus cum natus ipsum delectus fuga libero rerum iste.</th>
                         <th>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus quas autem a. Vel ipsum
                             optio earum amet facere tempora ad!</th>
-                            <th><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        <th><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="#13a4ec" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"
                                     class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -108,7 +126,7 @@
                                     <path d="M13.5 6.5l4 4" />
                                 </svg></button></th>
                         <th><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    fill="none" stroke="#ec3e13" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"
                                     class="icon icon-tabler icons-tabler-outline icon-tabler-trash">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
