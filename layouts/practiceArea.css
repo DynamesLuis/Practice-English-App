@@ -1,0 +1,231 @@
+:root {
+    --primary: #13a4ec;
+    --primary-hover: #eaf5fd;
+    --border-hover: #e5e7eb;
+    --background-light: #f6f7f8;
+    --background-dark: #101c22;
+    --font-secundary: #8f949b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    background: var(--background-light);
+}
+
+/*header*/
+
+body header {
+    display: flex;
+    justify-content: space-between;
+    padding: 2em;
+}
+
+body header nav {
+    display: flex;
+    gap: 1em;
+}
+
+body header nav a {
+    text-decoration: none;
+    color: var(--font-secundary);
+    font-weight: 400;
+    transition: color .3s ease;
+
+    &:hover {
+        color: var(--primary);
+    }
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3em;
+    font-size: 1.4em;
+    font-weight: 600;
+}
+
+/*header*/
+
+main {
+    text-align: center;
+    padding: 0 10em;
+}
+
+main>p {
+    margin-top: .5em;
+    color: var(--font-secundary);
+    font-weight: 500;
+}
+
+.practice-options {
+    margin-top: 2em;
+    display: flex;
+    gap: 1.5em;
+    justify-content: center;
+}
+
+.practice-options button {
+    cursor: pointer;
+    padding: .8em 1em;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background-color: white;
+    border: 1px solid var(--border-hover);
+    color: var(--font-secundary);
+    font-weight: 500;
+
+    transition: scale 0.3s ease,
+        border 0.3s ease,
+        color 0.3s ease;
+
+    &:hover {
+        scale: 1.1;
+        border: 1px solid var(--primary);
+        color: var(--primary);
+
+    }
+}
+
+.practice-options .active {
+    border: none;
+    background-color: var(--primary);
+    color: white;
+    transition: scale 0.3s ease;
+
+    &:hover {
+        scale: 1.1;
+        color: white;
+    }
+}
+
+/*vocab practice*/
+
+.vocabulary-practice {
+    margin-top: 2em;
+    /*display: block*/
+    display: none;
+}
+
+.show-btn {
+    position: absolute;
+    bottom: 2em;
+    right: 2em;
+    background-color: var(--primary);
+    display: block;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: .5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3em;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+        opacity: .9;
+    }
+}
+
+.word-answers,
+.word-preview {
+    background-color: white;
+    padding: 2em;
+    height: 15em;
+    border-radius: 10px;
+}
+
+.word-preview {
+    position: relative;
+    display: flex;
+    /* display: none; */
+    flex-direction: column;
+    justify-content: center;
+}
+
+.word-preview h3 {
+    font-size: 3rem;
+}
+
+.word-answers {
+    display: none;
+    /* display: flex; */
+    flex-direction: column;
+    text-align: start;
+}
+
+.word-answers p {
+    color: var(--font-secundary);
+    font-weight: 500;
+    margin-top: 1em;
+}
+
+.card-options {
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-options button {
+    font-size: 1.2rem;
+    padding: .5em 1em;
+    font-weight: 500;
+}
+
+.next-btn {
+    background-color: var(--primary);
+    display: block;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: .5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3em;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+        opacity: .9;
+    }
+}
+
+.previous-btn {
+    background-color: var(--background-light);
+    border: 1px solid var(--border-hover);
+    display: block;
+    color: var(--font-secundary);
+    border-radius: 5px;
+    cursor: pointer;
+    padding: .5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3em;
+    opacity: 1;
+    transition: color 0.3s ease,
+        border 0.3s ease;
+
+    &:hover {
+        color: var(--primary);
+        border: 1px solid var(--primary);
+    }
+}
+
+/*text practice*/
+
+.text-practice {
+    display: block;
+}
