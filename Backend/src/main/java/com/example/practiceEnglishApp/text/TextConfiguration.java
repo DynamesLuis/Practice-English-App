@@ -9,7 +9,7 @@ import java.util.List;
 @Configuration
 public class TextConfiguration {
     @Bean
-    CommandLineRunner commandLineRunner(TextRepository textRepository) {
+    CommandLineRunner commandLineRunnerText(TextRepository textRepository) {
         return args -> {
             Text text1 = new Text("Modeling girl", "some texttt");
             Text text2 = new Text("Triplet survivor", "some texottoto");
