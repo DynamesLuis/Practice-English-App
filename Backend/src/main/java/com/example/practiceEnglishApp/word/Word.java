@@ -1,6 +1,7 @@
 package com.example.practiceEnglishApp.word;
 
 import com.example.practiceEnglishApp.definition.Definition;
+import com.example.practiceEnglishApp.examples.Example;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -24,6 +25,8 @@ public class Word {
     private String word;
     @OneToMany(mappedBy="word")
     private Set<Definition> definitions = new HashSet<>();
+    @OneToMany(mappedBy = "word")
+    private Set<Example> examples = new HashSet<>();
 
     public Word() {
 
@@ -49,6 +52,9 @@ public class Word {
     public Set<Definition> getDefinitions() {
         return definitions;
     }
+    public Set<Example> getExamples() {
+        return examples;
+    }
 
     public void setId(long id) {
         this.id = id;
@@ -62,6 +68,10 @@ public class Word {
         this.definitions = definitions;
     }
 
+    public void setExamples(Set<Example> examples) {
+        this.examples = examples;
+    }
+
     public void addDefinition(Definition definition) {
         definitions.add(definition);
         definition.setWord(this);
@@ -72,12 +82,23 @@ public class Word {
         definition.setWord(null);
     }
 
+    public void addExample(Example example) {
+        examples.add(example);
+        example.setWord(this);
+    }
+
+    public void removeExample(Example example) {
+        examples.remove(example);
+        example.setWord(null);
+    }
+
     @Override
     public String toString() {
         return "Word{" +
                 "id=" + id +
                 ", word='" + word + '\'' +
                 ", definitions=" + definitions +
+                ", examples=" + examples +
                 '}';
     }
 }
