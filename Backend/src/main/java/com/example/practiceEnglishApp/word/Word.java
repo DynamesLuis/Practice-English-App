@@ -62,11 +62,22 @@ public class Word {
         this.definitions = definitions;
     }
 
+    public void addDefinition(Definition definition) {
+        definitions.add(definition);
+        definition.setWord(this);
+    }
+
+    public void removeDefinition(Definition definition) {
+        definitions.remove(definition);
+        definition.setWord(null);
+    }
+
     @Override
     public String toString() {
         return "Word{" +
                 "id=" + id +
                 ", word='" + word + '\'' +
+                ", definitions=" + definitions +
                 '}';
     }
 }

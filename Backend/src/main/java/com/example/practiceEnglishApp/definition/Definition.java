@@ -1,6 +1,7 @@
 package com.example.practiceEnglishApp.definition;
 
 import com.example.practiceEnglishApp.word.Word;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -21,6 +22,7 @@ public class Definition {
     private String definition;
     @ManyToOne
     @JoinColumn(name = "word_id", nullable = false)
+    @JsonIgnore
     private Word word;
 
     public Definition() {
@@ -36,6 +38,10 @@ public class Definition {
 
     public Definition(String definition,
                       Word word) {
+        this.definition = definition;
+    }
+
+    public Definition(String definition) {
         this.definition = definition;
     }
 
