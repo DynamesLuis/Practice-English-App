@@ -57,6 +57,7 @@ header .logo {
 main {
     text-align: center;
     padding: 0 10em;
+    padding-bottom: 1em;
 }
 
 main>p {
@@ -111,8 +112,8 @@ main>p {
 
 .vocabulary-practice {
     margin-top: 2em;
-    display: block;
-    /* display: none; */
+    /* display: block; */
+    display: none;
 }
 
 .show-btn {
@@ -228,8 +229,8 @@ main>p {
 /*text practice*/
 
 .text-practice {
-    /* display: block; */
-    display: none;
+    display: block;
+    /* display: none; */
     margin-top: 2em;
     background-color: white;
     padding: 2em;
