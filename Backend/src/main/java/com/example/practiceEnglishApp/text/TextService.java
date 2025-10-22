@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class TextService {
@@ -21,8 +22,14 @@ public class TextService {
         return textRepository.findAll();
     }
 
-    public void addNewText(Text text) {
+    public Text getOneText(String title) {
+        Optional<Text> searchedText = textRepository.findByTitle(title);
+        return searchedText.orElse(null);
+    }
+
+    public Text addNewText(Text text) {
         textRepository.save(text);
+        return text;
     }
 
     public void deleteText(Long textId) {
@@ -35,7 +42,7 @@ public class TextService {
     }
 
     @Transactional
-    public void updateText(Long textId, String title, String text) {
+    public Text updateText(Long textId, String title, String text) {
         Text existingText = textRepository.findById(textId)
                 .orElseThrow(()->  new EntityNotFoundException("The text with id " + textId + "doesn't exist"));
 
@@ -50,5 +57,7 @@ public class TextService {
                 !Objects.equals(existingText.getText(), text)) {
             existingText.setText(text);
         }
+
+        return existingText;
     }
 }
