@@ -1,9 +1,9 @@
 package com.example.practiceEnglishApp.word;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,7 +18,16 @@ public class WordController {
     }
 
     @GetMapping
-    public List<Word> getWord() {
+    public List<Word> getWords() {
         return wordService.getWords();
+    }
+
+    @GetMapping(path = {"{word}"})
+    public ResponseEntity<Word> getWord(@PathVariable("word") String word) {
+        Word searchedWord = wordService.getWordByWord(word);
+        if (searchedWord != null) {
+            return new ResponseEntity<>(searchedWord, HttpStatus.FOUND );
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
