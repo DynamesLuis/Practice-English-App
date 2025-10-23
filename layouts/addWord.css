@@ -123,6 +123,32 @@ section:first-child {
 
 section:last-child {
     flex: 3;
+    position: relative;
+}
+
+.search-form {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid var(--font-secundary);
+    padding: .3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    gap: 5px;
+    transition: border .3s ease;
+
+    &:has(input:focus) {
+        border: 1px solid var(--primary);
+    }
+}
+
+.search-form input {
+    background-color: transparent;
+    border: none;
+    outline: none;
 }
 
 table {
