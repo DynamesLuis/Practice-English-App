@@ -28,8 +28,7 @@ public class TextService {
     }
 
     public Text addNewText(Text text) {
-        textRepository.save(text);
-        return text;
+        return textRepository.save(text);
     }
 
     public void deleteText(Long textId) {

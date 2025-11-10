@@ -30,4 +30,10 @@ public class WordController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @PostMapping
+    public ResponseEntity<Word> addWord(@RequestBody Word newWord) {
+        Word addedWord = wordService.addWord(newWord);
+        return new ResponseEntity<>(addedWord, HttpStatus.CREATED);
+    }
 }

@@ -23,9 +23,9 @@ public class Word {
 
     private long id;
     private String word;
-    @OneToMany(mappedBy="word")
+    @OneToMany(mappedBy="word", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Definition> definitions = new HashSet<>();
-    @OneToMany(mappedBy = "word")
+    @OneToMany(mappedBy = "word", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Example> examples = new HashSet<>();
 
     public Word() {
