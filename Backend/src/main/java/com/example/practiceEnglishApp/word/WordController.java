@@ -36,4 +36,10 @@ public class WordController {
         Word addedWord = wordService.addWord(newWord);
         return new ResponseEntity<>(addedWord, HttpStatus.CREATED);
     }
+
+    @DeleteMapping(path = {"{wordId}"})
+    public ResponseEntity<String> deleteWord(@PathVariable("wordId") Long wordId) {
+        wordService.deleteWord(wordId);
+        return new ResponseEntity<>("Word deleted successfully", HttpStatus.OK);
+    }
 }

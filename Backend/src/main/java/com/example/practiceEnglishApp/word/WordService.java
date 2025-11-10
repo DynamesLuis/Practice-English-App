@@ -2,6 +2,7 @@ package com.example.practiceEnglishApp.word;
 
 import com.example.practiceEnglishApp.definition.Definition;
 import com.example.practiceEnglishApp.examples.Example;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,5 +44,14 @@ public class WordService {
         }
 
         return wordRepository.save(newWord);
+    }
+
+    public void deleteWord(Long wordId) {
+        boolean wordExisted = wordRepository.existsById(wordId);
+
+        if (!wordExisted) {
+            throw new EntityNotFoundException("The word with id " + wordId + " doesn't exist");
+        }
+        wordRepository.deleteById(wordId);
     }
 }
