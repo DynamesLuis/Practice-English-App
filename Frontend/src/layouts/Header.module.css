@@ -1,0 +1,35 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 2em;
+    position: relative;
+}
+
+.header nav {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 1em;
+}
+
+.header nav a {
+    font-size: .95rem;
+    text-decoration: none;
+    color: var(--font-secundary);
+    font-weight: 400;
+    transition: color .3s ease;
+
+    &:hover {
+        color: var(--primary);
+    }
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3em;
+    font-size: 1.4em;
+    font-weight: 600;
+}
