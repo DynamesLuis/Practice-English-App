@@ -1,0 +1,60 @@
+.vocabularyPractice {
+    margin-top: 2em;
+    display: block;
+}
+
+.showBtn {
+    position: absolute;
+    bottom: 2em;
+    right: 2em;
+    background-color: var(--primary);
+    display: block;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: .5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3em;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+        opacity: .9;
+    }
+}
+
+.wordAnswers,
+.wordPreview {
+    background-color: white;
+    padding: 2em;
+    height: 15em;
+    border-radius: 10px;
+}
+
+.wordPreview {
+    position: relative;
+    display: flex;
+    /* display: none; */
+    flex-direction: column;
+    justify-content: center;
+}
+
+.wordPreview h3 {
+    font-size: 3rem;
+}
+
+.wordAnswers {
+    display: flex;
+    /* display: flex; */
+    flex-direction: column;
+    text-align: start;
+}
+
+.wordAnswers p {
+    color: var(--font-secundary);
+    font-weight: 500;
+    margin-top: 1em;
+}

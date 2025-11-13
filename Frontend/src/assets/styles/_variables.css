@@ -1,8 +1,16 @@
 :root {
     --primary: #13a4ec;
+    --primary-light: #13a4ec33;
     --primary-hover: #eaf5fd;
+    --grenn:#22c55e;
+    --green-light: #22c55e33;
+    --yellow: #eab308;
+    --yellow-light: #eab30833;
+    --red: #ef4444;
+    --red-light: #ef444433;
     --border-hover: #e5e7eb;
     --background-light: #f6f7f8;
     --background-dark: #101c22;
     --font-secundary: #8f949b;
+    --range-bg: #bee0f8;
 }

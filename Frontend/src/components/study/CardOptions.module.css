@@ -1,0 +1,53 @@
+.cardOptions {
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardOptions button {
+    font-size: 1.2rem;
+    padding: .5em 1em;
+    font-weight: 500;
+}
+
+.nextBtn {
+    background-color: var(--primary);
+    display: block;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: .5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3em;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+        opacity: .9;
+    }
+}
+
+.previousBtn {
+    background-color: var(--background-light);
+    border: 1px solid var(--border-hover);
+    display: block;
+    color: var(--font-secundary);
+    border-radius: 5px;
+    cursor: pointer;
+    padding: .5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3em;
+    opacity: 1;
+    transition: color 0.3s ease,
+        border 0.3s ease;
+
+    &:hover {
+        color: var(--primary);
+        border: 1px solid var(--primary);
+    }
+}

@@ -1,0 +1,149 @@
+.addPage {
+    display: flex;
+    padding: 0 10em;
+    gap: 3em;
+}
+
+.addPage section {
+    border-radius: 10px;
+}
+
+section:first-child {
+    border: 1px solid var(--border-hover);
+    background-color: white;
+    flex: 1;
+    padding: 1.5em;
+}
+
+.wordForm {
+    margin-top: 2em;
+}
+
+.wordForm label {
+    display: block;
+    margin-top: 2em;
+}
+
+.wordForm input,
+.wordForm textarea {
+    background-color: var(--background-light);
+    border: 1px solid var(--border-hover);
+    outline-color: var(--primary);
+    font-size: 1.2rem;
+    padding: .4em;
+    border-radius: 5px;
+    width: 100%;
+    resize: none;
+    margin-top: .5em;
+}
+
+.wordForm button {
+    margin-top: 2em;
+    margin-left: auto;
+    background-color: var(--primary);
+    display: block;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: .5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3em;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+        opacity: .9;
+    }
+}
+
+.wordForm .addExampleBtn,
+.wordForm .addMeaningBtn {
+    margin-left: 0;
+    margin-top: 1em;
+    padding: .3em;
+}
+
+section:last-child {
+    flex: 3;
+    position: relative;
+}
+
+.searchForm {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid var(--font-secundary);
+    padding: .3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    gap: 5px;
+    transition: border .3s ease;
+
+    &:has(input:focus) {
+        border: 1px solid var(--primary);
+    }
+}
+
+.searchForm input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+table {
+    margin-top: 2em;
+    border: 1px solid var(--border-hover);
+    text-align: left;
+    border-radius: 5px;
+    color: var(--font-secundary);
+    border-collapse: collapse;
+}
+
+table thead {
+    background-color: var(--background-light);
+    font-size: .8rem;
+    text-transform: uppercase;
+}
+
+table thead th {
+    padding: 1em;
+}
+
+table tbody {
+    font-size: .8rem;
+    background-color: white;
+    line-height: 1.3em;
+}
+
+table tbody th {
+    padding: 1.5em 1em;
+    font-weight: 500;
+}
+
+table tr {
+    border-bottom: 1px solid var(--border-hover);
+}
+
+tbody tr th:first-child {
+    color: black;
+}
+
+tbody tr th:nth-child(3) {
+    font-style: italic;
+}
+
+table button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        opacity: .8;
+    }
+}

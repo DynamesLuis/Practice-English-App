@@ -1,0 +1,155 @@
+.addTextPage {
+    padding: 0 10em;
+}
+
+.addTextPage section {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.addTextPage section>p {
+    color: var(--font-secundary);
+    font-weight: 500;
+    margin-top: .5em;
+}
+
+.textForm {
+    margin-top: 1em;
+    background-color: white;
+    padding: 1.5em;
+}
+
+.textForm label{
+    display: block;
+}
+
+.textForm label:nth-child(2) {
+    margin-top: 2em;
+}
+
+.textForm input,
+.textForm textarea {
+    background-color: var(--background-light);
+    border: 1px solid var(--border-hover);
+    outline-color: var(--primary);
+    font-size: 1.2rem;
+    padding: .4em;
+    border-radius: 5px;
+    ;
+    margin-top: .5em;
+}
+
+.textForm input {
+    width: 50%;
+}
+
+.textForm textarea {
+    width: 100%;
+    height: 10em;
+    resize: none;
+}
+
+.textForm button {
+    margin-top: 2em;
+    margin-left: auto;
+    background-color: var(--primary);
+    display: block;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: .5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3em;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+        opacity: .9;
+    }
+}
+
+section:nth-child(2) {
+    margin-top: 2em;
+    position: relative;
+}
+
+.searchForm {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid var(--font-secundary);
+    padding: .3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    gap: 5px;
+    transition: border .3s ease;
+
+    &:has(input:focus) {
+        border: 1px solid var(--primary);
+    }
+}
+
+.searchForm input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+table {
+    margin-top: 2em;
+    border: 1px solid var(--border-hover);
+    text-align: left;
+    border-radius: 5px;
+    color: var(--font-secundary);
+    border-collapse: collapse;
+}
+
+table thead {
+    background-color: var(--background-light);
+    font-size: .8rem;
+    text-transform: uppercase;
+}
+
+table thead th {
+    padding: 1em;
+}
+
+table tbody {
+    font-size: .8rem;
+    background-color: white;
+    line-height: 1.3em;
+}
+
+table tbody td {
+    padding: 1.5em 1em;
+    font-weight: 500;
+}
+
+table tr {
+    border-bottom: 1px solid var(--border-hover);
+}
+
+tbody tr td:first-child {
+    color: black;
+}
+
+tbody tr td:nth-child(3) {
+    font-style: italic;
+}
+
+table button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        opacity: .8;
+    }
+}

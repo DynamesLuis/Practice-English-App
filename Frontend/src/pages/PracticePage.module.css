@@ -1,0 +1,241 @@
+.practicePage {
+    text-align: center;
+    padding: 0 10em;
+    padding-bottom: 1em;
+}
+
+.practicePage>p {
+    margin-top: .5em;
+    color: var(--font-secundary);
+    font-weight: 500;
+}
+
+.practiceOptions {
+    margin-top: 2em;
+    display: flex;
+    gap: 1.5em;
+    justify-content: center;
+}
+
+.practiceOptions button {
+    cursor: pointer;
+    padding: .8em 1em;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    background-color: white;
+    border: 1px solid var(--border-hover);
+    color: var(--font-secundary);
+    font-weight: 500;
+
+    transition: scale 0.3s ease,
+        border 0.3s ease,
+        color 0.3s ease;
+
+    &:hover {
+        scale: 1.1;
+        border: 1px solid var(--primary);
+        color: var(--primary);
+
+    }
+}
+
+.practiceOptions .active {
+    border: none;
+    background-color: var(--primary);
+    color: white;
+    transition: scale 0.3s ease;
+
+    &:hover {
+        scale: 1.1;
+        color: white;
+    }
+}
+
+/*vocab practice*/
+
+.vocabularyPractice {
+    margin-top: 2em;
+    /* display: block; */
+    display: none;
+}
+
+.showBtn {
+    position: absolute;
+    bottom: 2em;
+    right: 2em;
+    background-color: var(--primary);
+    display: block;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: .5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3em;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+        opacity: .9;
+    }
+}
+
+.wordAnswers,
+.wordPreview {
+    background-color: white;
+    padding: 2em;
+    height: 15em;
+    border-radius: 10px;
+}
+
+.wordPreview {
+    position: relative;
+    display: flex;
+    /* display: none; */
+    flex-direction: column;
+    justify-content: center;
+}
+
+.wordPreview h3 {
+    font-size: 3rem;
+}
+
+.wordAnswers {
+    display: none;
+    /* display: flex; */
+    flex-direction: column;
+    text-align: start;
+}
+
+.wordAnswers p {
+    color: var(--font-secundary);
+    font-weight: 500;
+    margin-top: 1em;
+}
+
+.cardOptions {
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardOptions button {
+    font-size: 1.2rem;
+    padding: .5em 1em;
+    font-weight: 500;
+}
+
+.nextBtn {
+    background-color: var(--primary);
+    display: block;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: .5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3em;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+        opacity: .9;
+    }
+}
+
+.previousBtn {
+    background-color: var(--background-light);
+    border: 1px solid var(--border-hover);
+    display: block;
+    color: var(--font-secundary);
+    border-radius: 5px;
+    cursor: pointer;
+    padding: .5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .3em;
+    opacity: 1;
+    transition: color 0.3s ease,
+        border 0.3s ease;
+
+    &:hover {
+        color: var(--primary);
+        border: 1px solid var(--primary);
+    }
+}
+
+/*text practice*/
+
+.textPractice {
+    display: block;
+    /* display: none; */
+    margin-top: 2em;
+    background-color: white;
+    padding: 2em;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.textPractice h3 {
+    font-size: 2rem;
+}
+
+.textPractice > p {
+    margin-top: 2em;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    color: var(--font-secundary);
+    font-weight: 500;
+}
+
+.textPractice h4 {
+    margin-top: 2em;
+}
+
+.fontsizeOptions {
+    margin-top: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fontsizeOptions> label {
+    font-weight: 700;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 300px;
+  height: 10px;
+  border-radius: 5px;  
+  background: var(--range-bg);
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  margin-right: 1em;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%; 
+  background: var(--primary);
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+}

@@ -1,0 +1,67 @@
+.addPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.addPage section {
+    text-align: center;
+}
+
+.addPage section h2 {
+    margin-top: 2em;
+    font-size: 2em;
+}
+
+
+.addPage section p {
+    margin-top: 1em;
+    color: var(--font-secundary);
+    font-weight: 400;
+}
+
+.addOptions {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    margin-top: 2em;
+}
+
+.addOptions article {
+    background-color: white;
+    width: 25%;
+    padding: 2em;
+    border-radius: 10px;
+    border: 1px solid var(--border-hover);
+    cursor: pointer;
+    box-shadow: none;
+    transition: border 0.3s ease,
+                box-shadow 0.3s ease;
+    
+    &:hover {
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        border: 1px solid var(--primary);
+
+        & span {
+            transform: scale(1.1);
+        }
+    }
+}
+
+.addOptions article span {
+    background-color: var(--primary-hover);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4em;
+    height: 4em;
+    border-radius: 100%;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+    transform: scale(1);
+}
+
+.addOptions article h3 {
+    margin-top: 2em;
+}
