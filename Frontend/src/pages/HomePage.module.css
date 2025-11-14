@@ -1,0 +1,212 @@
+.homePage {
+    padding: 0 10em;
+}
+
+.homePage h2 {}
+
+.infoContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, auto);
+    grid-column-gap: 1.5em;
+    grid-row-gap: 1.5em;
+    margin-top: 2em;
+}
+
+.div1 {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.div2 {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.div3 {
+    grid-area: 1 / 3 / 2 / 4;
+}
+
+.div4 {
+    grid-area: 1 / 4 / 2 / 5;
+}
+
+.div5 {
+    grid-area: 2 / 1 / 3 / 5;
+}
+
+.div6 {
+    grid-area: 3 / 1 / 4 / 3;
+}
+
+.div7 {
+    grid-area: 3 / 3 / 4 / 5;
+}
+
+.infoContainer>div {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    border-radius: 10px;
+}
+
+.div1,
+.div2,
+.div3,
+.div4 {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.div1,
+.div2,
+.div3,
+.div4,
+.div5,
+.div6,
+.div7 {
+    padding: 1.5em;
+}
+
+
+
+.div1 p:first-child,
+.div2 p:first-child,
+.div3 p:first-child,
+.div4 p:first-child {
+    color: var(--font-secundary);
+    font-size: .8rem;
+    font-weight: 400;
+}
+
+.div1 p:nth-child(2),
+.div2 p:nth-child(2),
+.div3 p:nth-child(2),
+.div4 p:nth-child(2) {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.div1 span,
+.div2 span,
+.div3 span,
+.div4 span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    width: 3em;
+    height: 3em;
+}
+
+.div1 span {
+    background-color: var(--primary-light);
+}
+
+.div2 span {
+    background-color: var(--green-light);
+}
+
+.div3 span {
+    background-color: var(--yellow-light);
+}
+
+.div4 span {
+    background-color: var(--red-light);
+}
+
+.div5 progress {
+  width: 100%;
+  height: 14px;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 1em;
+}
+
+/* Fondo */
+.div5 progress::-webkit-progress-bar {
+  background-color: #e5e7eb; /* gris claro */
+  border-radius: 20px;
+}
+
+/* Progreso */
+.div5 progress::-webkit-progress-value {
+  background-color: #13a4ec; /* azul principal */
+  border-radius: 20px;
+}
+
+/* Firefox */
+.div5 progress::-moz-progress-bar {
+  background-color: #13a4ec;
+  border-radius: 20px;
+}
+
+.div5 p {
+    color: var(--font-secundary);
+    font-family: 500;
+    margin-top: .5em;
+    margin-right: 0;
+}
+
+.div6 h4 {}
+
+.div6>div {
+    display: flex;
+    margin-top: 1em;
+    align-items: center;
+    gap: 5px;
+}
+
+.wordActivity span,
+.textActivity span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2em;
+    height: 2em;
+    border-radius: 100%;
+}
+
+.wordActivity span {
+    background: var(--red-light);
+}
+
+.textActivity span {
+    background: var(--primary-light);
+}
+
+.wordActivity>div p:first-child,
+.textActivity>div p:first-child {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.wordActivity>div p:nth-child(2),
+.textActivity>div p:nth-child(2) {
+    margin-top: .2em;
+    color: var(--font-secundary);
+    font-size: .9rem;
+}
+
+.div7 h4 {
+    margin-bottom: .5em;
+}
+
+.div7 .wordsToReviewContainer,
+.div7 .textToReviewContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.div7 .wordsToReviewContainer {
+    margin-bottom: 1em;
+}
+
+.div7 .wordsToReviewContainer p,
+.div7 .textToReviewContainer p {
+    background: var(--primary-light);
+    color: var(--primary);
+    padding: .3em .6em;
+    border-radius: 15px;
+}
