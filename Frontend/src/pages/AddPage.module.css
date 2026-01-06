@@ -3,19 +3,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-.addPage section {
     text-align: center;
 }
 
-.addPage section h2 {
+.addPage  h2 {
     margin-top: 2em;
     font-size: 2em;
 }
 
 
-.addPage section p {
+.addPage  p {
     margin-top: 1em;
     color: var(--font-secundary);
     font-weight: 400;

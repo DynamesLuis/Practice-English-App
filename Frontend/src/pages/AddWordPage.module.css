@@ -1,6 +1,6 @@
 .addPage {
     display: flex;
-    padding: 0 10em;
+    padding: 2em 10em;
     gap: 3em;
 }
 
