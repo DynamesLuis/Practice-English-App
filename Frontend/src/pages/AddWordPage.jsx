@@ -1,3 +1,4 @@
+import AddWordForm from "../components/addResourses/AddWordForm"
 import styles from "./AddWordPage.module.css"
 
 export default function AddWordPage() {
@@ -5,46 +6,7 @@ export default function AddWordPage() {
     <main className={styles.addPage}>
       <section>
         <h2>Add New Word</h2>
-        <form action="" className={styles.wordForm}>
-          <label htmlFor="word">Word</label>
-          <input type="text" id="word"/>
-            <label htmlFor="meaning">Meaning</label>
-            <div className="meaning-container">
-              <textarea name="" id="meaning"></textarea>
-            </div>
-            <button className="addMeaningBtn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                className="icon icon-tabler icons-tabler-outline icon-tabler-plus">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M12 5l0 14" />
-                <path d="M5 12l14 0" />
-              </svg>
-            </button>
-            <label htmlFor="example">Example</label>
-            <div className="example-container">
-              <textarea name="" id="example"></textarea>
-            </div>
-            <button className="addExampleBtn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                className="icon icon-tabler icons-tabler-outline icon-tabler-plus">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M12 5l0 14" />
-                <path d="M5 12l14 0" />
-              </svg>
-            </button>
-            <button>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                className="icon icon-tabler icons-tabler-outline icon-tabler-plus">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M12 5l0 14" />
-                <path d="M5 12l14 0" />
-              </svg>
-              Add word
-            </button>
-        </form>
+        <AddWordForm style={styles.wordForm}/>
       </section>
       <section>
         <h2>Your Vocabylary List</h2>

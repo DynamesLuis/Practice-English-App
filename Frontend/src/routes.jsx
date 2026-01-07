@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom"
+import { createBrowserRouter, Navigate } from "react-router-dom"
 import Layout from "./layouts/Layout.jsx"
 import HomePage from "./pages/HomePage.jsx"
 import AddPage from "./pages/AddPage.jsx"
@@ -30,8 +30,12 @@ export const routes = createBrowserRouter([
             {
                 path: "/practicePage",
                 element: <PracticePage />
+            },
+            {
+                index: true,
+                element: <HomePage />
             }
         ]
 
-    }
+    },
 ])

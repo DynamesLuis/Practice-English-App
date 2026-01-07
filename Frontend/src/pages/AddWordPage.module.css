@@ -34,7 +34,7 @@ section:first-child {
     border-radius: 5px;
     width: 100%;
     resize: none;
-    margin-top: .5em;
+    margin-top: .2em;
 }
 
 .wordForm button {
@@ -57,6 +57,16 @@ section:first-child {
     &:hover {
         opacity: .9;
     }
+}
+
+.wordForm>div button {
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    width: 30px;
+    height: 30px;
 }
 
 .wordForm .addExampleBtn,
