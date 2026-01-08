@@ -3,14 +3,19 @@ import { useState } from "react"
 export default function AddWordForm({ style }) {
     const [definitions, setDefinitions] = useState([["", "1414"]])
 
-    const listDefinitions = definitions.map(definition =>
-        <div key={definition[1]}>
-            <button type="button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ec3e13" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
-            </button>
-            <textarea key={definition[1]}></textarea>
-        </div>
-    );
+    const listDefinitions = definitions.map((definition, index) => {
+        const isFirst = index === 0
+        return (
+            <div key={definition[1]}>
+                {!isFirst && (
+                    <button type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ec3e13" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+                    </button>
+                )}
+                <textarea></textarea>
+            </div>
+        )
+    });
 
     const handleAddDefinition = () => {
         setDefinitions(definitions.concat([["", "1415"]]))
@@ -18,14 +23,19 @@ export default function AddWordForm({ style }) {
 
     const [examples, setExanples] = useState([["", "1420"]])
 
-    const listExamples = examples.map(example =>
-        <div key={example[1]}>
-            <button type="button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ec3e13" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
-            </button>
-            <textarea></textarea>
-        </div>
-    );
+    const listExamples = examples.map((example, index) => {
+        const isFirst = index === 0
+        return (
+            <div key={example[1]} >
+                {!isFirst && (
+                    <button type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ec3e13" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+                    </button>
+                )}
+                <textarea></textarea>
+            </div>
+        )
+    });
 
     const handleAddExample = () => {
         setExanples(examples.concat([["", "1425"]]))

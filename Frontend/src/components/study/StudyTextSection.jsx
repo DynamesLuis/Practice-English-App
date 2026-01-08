@@ -1,11 +1,18 @@
+import { useState } from "react"
 import styles from "./StudyTextSection.module.css"
 
 
 export default function StudyTextSection() {
+    const [fontSize, setFontSize] = useState(14)
+
+    const handleChange = (e) => {
+        setFontSize(e.target.value)
+    }
+
     return (
         <section className={styles.textPractice}>
             <h3>A good father</h3>
-            <p>
+            <p style={{ fontSize: `${fontSize}px` }}>
                 We were young when we had her. I was twenty-three, the mother was twenty; we weren't planning to
                 have
                 kids yet. I don't want to say the relationship fell apart because of our daughter. It was mostly
@@ -63,8 +70,8 @@ export default function StudyTextSection() {
             <div className={styles.fontsizeOptions}>
                 <p>Font size</p>
                 <div>
-                    <input type="range" name="" id="slider" className={styles.slider} />
-                    <label htmlFor="slider-range">14</label>
+                    <input type="range" name="" id="slider" className={styles.slider} step={1} value={fontSize} min={12} max={18} onChange={handleChange}/>
+                    <label htmlFor="slider-range">{fontSize}</label>
                 </div>
             </div>
         </section>
