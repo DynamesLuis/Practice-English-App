@@ -20,7 +20,7 @@
     padding: 1.5em;
 }
 
-.textForm label{
+.textForm label {
     display: block;
 }
 
@@ -103,6 +103,8 @@ section:nth-child(2) {
 }
 
 table {
+    width: 100%;
+    table-layout: fixed;
     margin-top: 2em;
     border: 1px solid var(--border-hover);
     text-align: left;
@@ -110,6 +112,23 @@ table {
     color: var(--font-secundary);
     border-collapse: collapse;
 }
+
+table th:nth-child(1),
+table td:nth-child(1) {
+    width: 80%;
+}
+
+table th:nth-child(2),
+table td:nth-child(2) {
+    width: 10%;
+}
+
+table th:nth-child(3),
+table td:nth-child(3) {
+    width: 10%;
+}
+
+
 
 table thead {
     background-color: var(--background-light);

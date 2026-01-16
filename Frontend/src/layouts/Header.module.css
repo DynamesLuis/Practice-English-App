@@ -15,6 +15,7 @@
 }
 
 .header nav a {
+    position: relative;
     font-size: .95rem;
     text-decoration: none;
     color: var(--font-secundary);
@@ -22,7 +23,24 @@
     transition: color .3s ease;
 
     &:hover {
-        color: var(--primary);
+        color: #6bbde6;
+    }
+
+}
+
+.header nav a.isActive {
+    color: var(--primary);
+
+    &::before {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--primary);
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
     }
 }
 

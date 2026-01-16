@@ -14,7 +14,7 @@ export default function Header() {
                 EnglishPractice
             </p>
             <nav>
-                <Link to={"/home"}>Home</Link>
+                <Link to={"/home"} className={styles.isActive}>Home</Link>
                 <Link to={"/addPage"}>Add</Link>
                 <Link to={"/practicePage"}>Practice</Link>
             </nav>

@@ -1,10 +1,10 @@
-.addPage {
+.addWordPage {
     display: flex;
     padding: 2em 10em;
     gap: 3em;
 }
 
-.addPage section {
+.addWordPage section {
     border-radius: 10px;
 }
 
@@ -106,13 +106,40 @@ section:last-child {
     outline: none;
 }
 
-table {
+.addWordPage table {
+    width: 100%;
+    table-layout: fixed;
     margin-top: 2em;
     border: 1px solid var(--border-hover);
     text-align: left;
     border-radius: 5px;
     color: var(--font-secundary);
     border-collapse: collapse;
+}
+
+.addWordPage table th:nth-child(1),
+.addWordPage table td:nth-child(1) {
+    width: 28%;
+}
+
+.addWordPage table th:nth-child(2),
+.addWordPage table td:nth-child(2) {
+    width: 28%;
+}
+
+.addWordPage table th:nth-child(3),
+.addWordPage table td:nth-child(3) {
+    width: 28%;
+}
+
+.addWordPagetable th:nth-child(4),
+.addWordPagetable td:nth-child(4) {
+    width: 8%;
+}
+
+.addWordPagetable th:nth-child(5),
+.addWordPagetable td:nth-child(5) {
+    width: 8%;
 }
 
 table thead {

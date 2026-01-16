@@ -1,0 +1,197 @@
+[
+    {
+        "word": "run",
+        "meanings": [
+            "to move quickly on foot",
+            "to operate or function",
+            "to manage or control"
+        ],
+        "examples": [
+            "I run every morning before work.",
+            "This software runs on Linux.",
+            "She runs her own business."
+        ]
+    },
+    {
+        "word": "break",
+        "meanings": [
+            "to damage something so it separates",
+            "to stop working",
+            "to pause or rest"
+        ],
+        "examples": [
+            "Be careful not to break the glass.",
+            "My phone broke yesterday.",
+            "Let's take a short break."
+        ]
+    },
+    {
+        "word": "set",
+        "meanings": [
+            "to put something in a specific place",
+            "to establish or define",
+            "to become firm or solid"
+        ],
+        "examples": [
+            "Set the book on the table.",
+            "The company set new rules.",
+            "The concrete will set in a few hours."
+        ]
+    },
+    {
+        "word": "get",
+        "meanings": [
+            "to obtain or receive",
+            "to understand",
+            "to arrive at a place"
+        ],
+        "examples": [
+            "I got a new job.",
+            "I don't get this explanation.",
+            "We get home at 6 p.m."
+        ]
+    },
+    {
+        "word": "hold",
+        "meanings": [
+            "to carry or support with hands",
+            "to keep or retain",
+            "to organize or host"
+        ],
+        "examples": [
+            "Hold the box carefully.",
+            "She holds an important position.",
+            "They will hold a meeting tomorrow."
+        ]
+    },
+    {
+        "word": "take",
+        "meanings": [
+            "to grab or pick up",
+            "to consume",
+            "to require a certain amount of time"
+        ],
+        "examples": [
+            "Take this bag with you.",
+            "He takes medicine every day.",
+            "The trip takes two hours."
+        ]
+    },
+    {
+        "word": "make",
+        "meanings": [
+            "to create or produce",
+            "to cause something to happen",
+            "to force or require"
+        ],
+        "examples": [
+            "She makes her own clothes.",
+            "That joke made me laugh.",
+            "They made him apologize."
+        ]
+    },
+    {
+        "word": "point",
+        "meanings": [
+            "a sharp end or tip",
+            "a purpose or reason",
+            "to indicate or show"
+        ],
+        "examples": [
+            "The pencil has a sharp point.",
+            "I don't see the point of this.",
+            "She pointed at the screen."
+        ]
+    },
+    {
+        "word": "change",
+        "meanings": [
+            "to make something different",
+            " money in smaller units",
+            "to replace or exchange"
+        ],
+        "examples": [
+            "You need to change your habits.",
+            "Do you have any change?",
+            "He changed jobs last year."
+        ]
+    },
+    {
+        "word": "play",
+        "meanings": [
+            "to engage in a game",
+            "to perform music",
+            "to act a role"
+        ],
+        "examples": [
+            "The kids play in the park.",
+            "She plays the piano.",
+            "He played the main character."
+        ]
+    },
+    {
+        "word": "work",
+        "meanings": [
+            "to do a job or task",
+            "to function correctly",
+            " effort or activity"
+        ],
+        "examples": [
+            "I work as a developer.",
+            "This solution doesn't work.",
+            "It takes a lot of work."
+        ]
+    },
+    {
+        "word": "light",
+        "meanings": [
+            "illumination",
+            "not heavy",
+            "to ignite"
+        ],
+        "examples": [
+            "Turn on the light.",
+            "This bag is very light.",
+            "He lit the candle."
+        ]
+    },
+    {
+        "word": "right",
+        "meanings": [
+            "correct",
+            "a moral or legal entitlement",
+            "the opposite of left"
+        ],
+        "examples": [
+            "Your answer is right.",
+            "Everyone has the right to speak.",
+            "Turn right at the corner."
+        ]
+    },
+    {
+        "word": "call",
+        "meanings": [
+            "to phone someone",
+            "to name something",
+            "to request or demand"
+        ],
+        "examples": [
+            "I will call you later.",
+            "They called the dog Max.",
+            "She called for help."
+        ]
+    },
+    {
+        "word": "open",
+        "meanings": [
+            "to unlock or uncover",
+            "available or accessible",
+            "honest or transparent"
+        ],
+        "examples": [
+            "Open the door, please.",
+            "The store is open.",
+            "He is open about his feelings."
+        ]
+    }
+]
