@@ -30,7 +30,7 @@ export default function AddWordForm({ style }) {
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ec3e13" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
                     </button>
                 )}
-                <textarea value={meaning.meaning} onChange={(event)  => handleChangeMeaning(meaning.renderId, event.target.value)}></textarea>
+                <textarea value={meaning.meaning} onChange={(event) => handleChangeMeaning(meaning.renderId, event.target.value)}></textarea>
             </div>
         )
     });
@@ -103,7 +103,7 @@ export default function AddWordForm({ style }) {
     }
 
     return (
-        <form action="" className={style}>
+        <form className={style} onSubmit={(event) => handleSubmit(event)}>
             <label htmlFor="word">Word</label>
             <input type="text" id="word" value={word} onChange={(event) => setWord(event.target.value)} />
             <label htmlFor="meaning">Meaning</label>
@@ -132,7 +132,7 @@ export default function AddWordForm({ style }) {
                     <path d="M5 12l14 0" />
                 </svg>
             </button>
-            <button type="submit" onClick={(event) => handleSubmit(event)}>
+            <button type="submit">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                     className="icon icon-tabler icons-tabler-outline icon-tabler-plus">
