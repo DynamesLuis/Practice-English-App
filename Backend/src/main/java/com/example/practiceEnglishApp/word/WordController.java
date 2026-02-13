@@ -42,4 +42,6 @@ public class WordController {
         wordService.deleteWord(wordId);
         return new ResponseEntity<>("Word deleted successfully", HttpStatus.OK);
     }
+
+    //edit word falta
 }
