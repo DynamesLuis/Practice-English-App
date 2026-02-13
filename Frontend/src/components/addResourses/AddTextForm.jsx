@@ -1,14 +1,18 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { postText, putText } from "../../api/textService"
 
-export default function AddTextForm({ style }) {
-    const [formValues, setFormValue] = useState({
+export default function AddTextForm({ style, setTexts, editingText, setEditingText }) {
+    const isEditing = editingText !== null
+    const submitBtnText = isEditing ? "Edit text" : "Add text"
+
+    const [formValues, setFormValues] = useState({
         title: "",
         text: ""
     })
 
     const handleChange = (event) => {
         const { name, value } = event.target
-        setFormValue(prev => ({
+        setFormValues(prev => ({
             ...prev,
             [name]: value
         }))
@@ -16,11 +20,46 @@ export default function AddTextForm({ style }) {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        setFormValue({
+
+        if (isEditing) {
+            editText()
+        } else {
+            addNewText()
+        }
+
+        setFormValues({
             title: "",
             text: ""
         })
     }
+
+    const editText = async () => {
+        const textId = editingText.id
+        const { title, text } = formValues
+        try {
+            const response = await putText(textId, title, text)
+            setTexts(prev => prev.map(prevText => prevText.id === textId ? { ...prevText, title: title, text: text } : prevText))
+            setEditingText(null)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const addNewText = async () => {
+        try {
+            const response = await postText(formValues)
+            const textAdded = response.data
+            setTexts(prev => [...prev, textAdded])
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    useEffect(() => {
+        if (editingText) {
+            setFormValues(editingText)
+        }
+    }, [editingText])
 
     return (
         <form className={style} onSubmit={(event) => handleSubmit(event)}>
@@ -36,7 +75,7 @@ export default function AddTextForm({ style }) {
                     <path d="M12 5l0 14" />
                     <path d="M5 12l14 0" />
                 </svg>
-                Add Text
+                {submitBtnText}
             </button>
         </form>
     )

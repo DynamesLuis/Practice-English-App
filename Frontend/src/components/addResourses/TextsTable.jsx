@@ -1,4 +1,22 @@
-export default function TextsTable({ textsData }) {
+import { deleteText } from "../../api/textService"
+
+export default function TextsTable({ textsData, setTexts, setEditingText }) {
+    const handleDeleteText = async (textId) => {
+        try {
+            await deleteText(textId)
+            setTexts(prev => 
+                prev.filter(text => text.id !== textId)
+            )
+        } catch (error) {
+            console, error(error)
+        }
+    }
+
+    const handleEditClick = (text) => {
+        setEditingText(text)
+        console.log(text);
+    }
+
     return (
         <table>
             <thead>
@@ -8,9 +26,9 @@ export default function TextsTable({ textsData }) {
             </thead>
             <tbody>
                 {textsData.map(text => (
-                    <tr key={text.title}> 
+                    <tr key={text.id}>
                         <td>{text.title}</td>
-                        <td><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        <td><button onClick={() => handleEditClick(text)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="#13a4ec" strokeWidth="2" strokeLinecap="round"
                             strokeLinejoin="round"
                             className="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
@@ -18,7 +36,7 @@ export default function TextsTable({ textsData }) {
                             <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
                             <path d="M13.5 6.5l4 4" />
                         </svg></button></td>
-                        <td><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        <td><button onClick={() => handleDeleteText(text.id)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="#ec3e13" strokeWidth="2" strokeLinecap="round"
                             strokeLinejoin="round"
                             className="icon icon-tabler icons-tabler-outline icon-tabler-trash">

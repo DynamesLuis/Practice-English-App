@@ -1,11 +1,12 @@
 import { useState } from "react"
+import { postWord } from "../../api/wordService"
 
 function generateId() {
     return crypto.randomUUID()
 }
 
-const INITIAL_MEANINGS_STATE = [{
-    meaning: "",
+const INITIAL_DEFINITIONS_STATE = [{
+    definition: "",
     renderId: generateId(),
     dbId: null,
 }]
@@ -16,41 +17,41 @@ const INITIAL_EXAMPLES_STATE = [{
     dbId: null
 }]
 
-export default function AddWordForm({ style }) {
+export default function AddWordForm({ style, setWords }) {
     const [word, setWord] = useState("")
 
-    const [meanings, setMeanings] = useState(INITIAL_MEANINGS_STATE)
+    const [definitions, setDefinitions] = useState(INITIAL_DEFINITIONS_STATE)
 
-    const listMeanings = meanings.map((meaning, index) => {
+    const listDefinitions = definitions.map((definition, index) => {
         const isFirst = index === 0
         return (
-            <div key={meaning.renderId}>
+            <div key={definition.renderId}>
                 {!isFirst && (
-                    <button type="button" onClick={() => handleDeleteMeaning(meaning.renderId)}>
+                    <button type="button" onClick={() => handleDeleteDefinition(definition.renderId)}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ec3e13" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
                     </button>
                 )}
-                <textarea value={meaning.meaning} onChange={(event) => handleChangeMeaning(meaning.renderId, event.target.value)}></textarea>
+                <textarea value={definition.definition} onChange={(event) => handleChangeDefinition(definition.renderId, event.target.value)}></textarea>
             </div>
         )
     });
 
-    const handleAddMeaning = () => {
-        setMeanings(prev => [...prev, {
-            meaning: "",
+    const handleAddDefinition = () => {
+        setDefinitions(prev => [...prev, {
+            definition: "",
             renderId: generateId(),
             dbId: null,
         }])
     }
 
-    const handleDeleteMeaning = (renderId) => {
-        setMeanings(meanings.filter(meaning => meaning.renderId !== renderId))
+    const handleDeleteDefinition = (renderId) => {
+        setDefinitions(definitions.filter(definition => definition.renderId !== renderId))
     }
 
-    const handleChangeMeaning = (renderId, newValue) => {
-        setMeanings(prev =>
-            prev.map(meaning =>
-                meaning.renderId === renderId ? { ...meaning, meaning: newValue } : meaning
+    const handleChangeDefinition = (renderId, newValue) => {
+        setDefinitions(prev =>
+            prev.map(definition =>
+                definition.renderId === renderId ? { ...definition, definition: newValue } : definition
             ))
     }
 
@@ -93,13 +94,25 @@ export default function AddWordForm({ style }) {
         event.preventDefault()
         const payload = {
             word: word,
-            definitions: [meanings.map(meaning => ({ definition: meaning.meaning }))],
-            examples: [examples.map(example => ({ examples: example.example }))]
+            definitions: definitions.map(definition => ({ definition: definition.definition })),
+            examples: examples.map(example => ({ example: example.example }))
         }
-        console.log(payload)
         setWord("")
-        setMeanings(INITIAL_MEANINGS_STATE)
+        setDefinitions(INITIAL_DEFINITIONS_STATE)
         setExamples(INITIAL_EXAMPLES_STATE)
+        addWord(payload)
+        //console.log(payload);
+        
+    }
+
+    const addWord = async(newWord) => {
+        try {
+            const response = await postWord(newWord)
+            const createWord = response.data
+            setWords(prev => [...prev, createWord])
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     return (
@@ -108,9 +121,9 @@ export default function AddWordForm({ style }) {
             <input type="text" id="word" value={word} onChange={(event) => setWord(event.target.value)} />
             <label htmlFor="meaning">Meaning</label>
             <div className="meaning-container">
-                {listMeanings}
+                {listDefinitions}
             </div>
-            <button className="addMeaningBtn" type="button" onClick={handleAddMeaning} >
+            <button className="addMeaningBtn" type="button" onClick={handleAddDefinition} >
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
                     className="icon icon-tabler icons-tabler-outline icon-tabler-plus">

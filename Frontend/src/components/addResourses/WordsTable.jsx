@@ -1,4 +1,17 @@
-export default function WordsTable({wordsData}) {
+import { deleteWord } from "../../api/wordService"
+
+export default function WordsTable({ wordsData, setWords }) {
+    const handleDeleteWord = async (idWord) => {
+        try {
+            await deleteWord(idWord)
+            setWords(prev =>
+                prev.filter(word => word.id !== idWord)
+            )
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
     return (
         <table>
             <thead>
@@ -9,14 +22,16 @@ export default function WordsTable({wordsData}) {
                 </tr>
             </thead>
             <tbody>
+                {console.log(wordsData, "words in state")
+                }
                 {wordsData.map(word => (
-                    <tr key={word.word}>
+                    <tr key={word.id}>
                         <th>{word.word}</th>
                         <th>
-                            {word.meanings.map(meaning => (<p key={meaning}>{meaning}</p>))}
+                            {word.definitions.map(definition => (<p key={definition.id}>{definition.definition}</p>))}
                         </th>
                         <th>
-                            {word.examples.map(example => (<p key={example}>{example}</p>))}
+                            {word.examples.map(example => (<p key={example.id}>{example.example}</p>))}
                         </th>
                         <th><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="#13a4ec" strokeWidth="2" strokeLinecap="round"
@@ -26,7 +41,7 @@ export default function WordsTable({wordsData}) {
                             <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
                             <path d="M13.5 6.5l4 4" />
                         </svg></button></th>
-                        <th><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        <th><button onClick={() => handleDeleteWord(word.id)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="#ec3e13" strokeWidth="2" strokeLinecap="round"
                             strokeLinejoin="round"
                             className="icon icon-tabler icons-tabler-outline icon-tabler-trash">
