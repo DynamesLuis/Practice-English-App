@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom"
 import styles from "./Header.module.css"
+import PageNavigation from "../components/layout/PageNavigation"
 
 export default function Header() {
     return (
@@ -13,11 +13,7 @@ export default function Header() {
                 </svg>
                 EnglishPractice
             </p>
-            <nav>
-                <Link to={"/home"} className={styles.isActive}>Home</Link>
-                <Link to={"/addPage"}>Add</Link>
-                <Link to={"/practicePage"}>Practice</Link>
-            </nav>
+            <PageNavigation styles={styles}/>
             <p>image</p>
         </header>
     )
