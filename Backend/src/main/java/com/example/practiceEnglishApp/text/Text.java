@@ -18,6 +18,7 @@ public class Text {
 
     private long id;
     private String title;
+    @Column(columnDefinition = "TEXT")
     private String text;
 
     public Text() {

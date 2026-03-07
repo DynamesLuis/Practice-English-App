@@ -34,6 +34,12 @@ public class TextController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping(path = "/random")
+    public ResponseEntity<Text> getRandomText() {
+        Text randomText = textService.getRandomText();
+        return new ResponseEntity<>(randomText, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Text> addNewText(@RequestBody Text text) {
         Text addedText = textService.addNewText(text);

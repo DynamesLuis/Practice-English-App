@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class WordService {
     private final WordRepository wordRepository;
+    private final Random random = new Random();
 
     @Autowired
     public WordService(WordRepository wordRepository) {
@@ -27,6 +29,17 @@ public class WordService {
     public Word getWordByWord(String word) {
         Optional<Word> searchedWord = wordRepository.findByWord(word);
         return searchedWord.orElse(null);
+    }
+
+    public Word getRandomWord() {
+        Long maxId = wordRepository.findMaxId();
+        if (maxId == null) {
+            throw new RuntimeException("No words in database");
+        }
+        long randomId = 1 + random.nextLong(maxId);
+        return wordRepository
+                .findFirstByIdGreaterThanEqual(randomId)
+                .orElseGet(() -> wordRepository.findFirstByOrderByIdAsc().orElseThrow());
     }
 
     public Word addWord(Word newWord) {

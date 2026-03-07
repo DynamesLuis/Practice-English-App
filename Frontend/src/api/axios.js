@@ -9,9 +9,4 @@ const api = axios.create({
 });
 
 export default api;
-//guardar texto grande
-// obtener una palabra random
-//obtener un texto random
-// páginación desde el backend
-// otros datos del Home
-// arreglar put de words
+

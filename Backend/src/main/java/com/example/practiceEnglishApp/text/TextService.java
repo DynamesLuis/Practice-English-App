@@ -8,10 +8,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class TextService {
     private final TextRepository textRepository;
+    private final Random random = new Random();
 
     @Autowired
     public TextService(TextRepository textRepository) {
@@ -25,6 +27,16 @@ public class TextService {
     public Text getOneText(String title) {
         Optional<Text> searchedText = textRepository.findByTitle(title);
         return searchedText.orElse(null);
+    }
+
+    public Text getRandomText() {
+        Long maxId = textRepository.findMaxId();
+        if (maxId == null) {
+            throw new RuntimeException("No texts in database");
+        }
+        long randomId = 1 + random.nextLong(maxId);
+        return textRepository.findFirstByIdGreaterThanEqual(randomId)
+                .orElseGet(() -> textRepository.findFirstByOrderByIdAsc().orElseThrow());
     }
 
     public Text addNewText(Text text) {

@@ -31,6 +31,13 @@ public class WordController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/random")
+    public ResponseEntity<Word> getRandomWord() {
+        Word randomWord = wordService.getRandomWord();
+        return new ResponseEntity<>(randomWord, HttpStatus.OK);
+    }
+
+
     @PostMapping
     public ResponseEntity<Word> addWord(@RequestBody Word newWord) {
         Word addedWord = wordService.addWord(newWord);
