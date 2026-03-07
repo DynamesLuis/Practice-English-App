@@ -11,7 +11,7 @@ const RESULTS_PER_PAGES = 5
 
 export default function AddTextPage() {
     const [texts, setTexts] = useState([])
-    const [editingText, setEditingText] = useState(null) 
+    const [editingText, setEditingText] = useState(null)
     const [textToFilter, setTextToFilter] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
     const textsFilterByTitle = textToFilter === ""
@@ -48,12 +48,12 @@ export default function AddTextPage() {
             <section>
                 <h2>Add New Texts</h2>
                 <p>Expan your library by adding texts to practice with.</p>
-                <AddTextForm style={styles.textForm} setTexts={setTexts} editingText={editingText} setEditingText={setEditingText}/>
+                <AddTextForm style={styles.textForm} setTexts={setTexts} editingText={editingText} setEditingText={setEditingText} />
             </section>
             <section>
                 <h2>Your Texts</h2>
                 <SearchTextForm style={styles.searchForm} onTextFilter={handleTextFilter} />
-                <TextsTable textsData={texts} setTexts={setTexts} setEditingText={setEditingText}/>
+                <TextsTable textsData={texts} setTexts={setTexts} setEditingText={setEditingText} />
                 <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
             </section>
         </main>

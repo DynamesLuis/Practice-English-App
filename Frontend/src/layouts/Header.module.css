@@ -8,10 +8,9 @@
 
 .header nav {
     display: flex;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
     gap: 1em;
+    order: 3;
 }
 
 .header nav a {
@@ -44,6 +43,35 @@
     }
 }
 
+
+
+
+nav>button {
+    font-size: 22px;
+    background: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+}
+
+nav>div {
+    display: none;
+}
+
+nav div.isOpen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    position: absolute;
+    padding: 1em;
+    top: 30px;
+    right: -32px;
+    background: white;
+    width: 100dvw;
+    border-radius: 10px;
+}
+
 .logo {
     display: flex;
     align-items: center;
@@ -51,4 +79,26 @@
     gap: .3em;
     font-size: 1.4em;
     font-weight: 600;
+    order: 1;
+}
+
+.sesion {
+    order: 2;
+}
+
+@media (min-width: 1024px) {
+    .header nav {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .header nav button {
+        display: none;
+    }
+
+    .header nav>div {
+        display: flex;
+        gap: 1em;
+    }
 }

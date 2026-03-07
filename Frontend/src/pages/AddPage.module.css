@@ -4,15 +4,15 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    padding: 2em
 }
 
-.addPage  h2 {
-    margin-top: 2em;
+.addPage h2 {
     font-size: 2em;
 }
 
 
-.addPage  p {
+.addPage p {
     margin-top: 1em;
     color: var(--font-secundary);
     font-weight: 400;
@@ -20,22 +20,23 @@
 
 .addOptions {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 2em;
     margin-top: 2em;
 }
 
 .addOptions article {
     background-color: white;
-    width: 25%;
     padding: 2em;
     border-radius: 10px;
     border: 1px solid var(--border-hover);
     cursor: pointer;
     box-shadow: none;
     transition: border 0.3s ease,
-                box-shadow 0.3s ease;
-    
+        box-shadow 0.3s ease;
+
     &:hover {
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
         border: 1px solid var(--primary);
@@ -61,4 +62,21 @@
 
 .addOptions article h3 {
     margin-top: 2em;
+}
+
+@media (min-width: 768px) {
+    .addOptions {
+        flex-direction: row;
+        align-items: baseline;
+    }
+
+    .addOptions article {
+        width: 40%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .addOptions article {
+        width: 25%;
+    }
 }

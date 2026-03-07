@@ -1,11 +1,14 @@
 .addTextPage {
-    padding: 2em 10em;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
 }
 
 .addTextPage section {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .addTextPage section>p {
@@ -41,7 +44,7 @@
 }
 
 .textForm input {
-    width: 50%;
+    width: 100%;
 }
 
 .textForm textarea {
@@ -78,7 +81,8 @@ section:nth-child(2) {
 }
 
 .searchForm {
-    position: absolute;
+    position: relative;
+    margin-top: 1em;
     top: 0;
     right: 0;
     background-color: white;
@@ -115,7 +119,7 @@ table {
 
 table th:nth-child(1),
 table td:nth-child(1) {
-    width: 80%;
+    width: 50%;
 }
 
 table th:nth-child(2),
@@ -171,4 +175,34 @@ table button {
     &:hover {
         opacity: .8;
     }
+}
+
+
+@media (min-width: 768px) {
+    .searchForm {
+        position: absolute;
+        margin-top: 0;
+    }
+
+    .textForm input {
+        width: 75%;
+    }
+
+    table th:nth-child(1),
+    table td:nth-child(1) {
+        width: 70%;
+    }
+
+}
+
+@media (min-width: 1024px) {
+    .textForm input {
+        width: 50%;
+    }
+
+    table th:nth-child(1),
+    table td:nth-child(1) {
+        width: 80%;
+    }
+
 }

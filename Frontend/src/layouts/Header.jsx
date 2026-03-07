@@ -14,7 +14,9 @@ export default function Header() {
                 EnglishPractice
             </p>
             <PageNavigation styles={styles}/>
-            <p>image</p>
+            <div className={styles.sesion}>
+                logo
+            </div>
         </header>
     )
 }

@@ -4,7 +4,7 @@ export default function TextsTable({ textsData, setTexts, setEditingText }) {
     const handleDeleteText = async (textId) => {
         try {
             await deleteText(textId)
-            setTexts(prev => 
+            setTexts(prev =>
                 prev.filter(text => text.id !== textId)
             )
         } catch (error) {
@@ -41,6 +41,7 @@ export default function TextsTable({ textsData, setTexts, setEditingText }) {
                             strokeLinejoin="round"
                             className="icon icon-tabler icons-tabler-outline icon-tabler-trash">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+
                             <path d="M4 7l16 0" />
                             <path d="M10 11l0 6" />
                             <path d="M14 11l0 6" />

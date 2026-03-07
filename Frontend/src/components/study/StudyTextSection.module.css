@@ -1,45 +1,51 @@
 .textPractice {
-    display: block;
-    /* display: none; */
-    margin-top: 2em;
-    background-color: white;
-    padding: 2em;
-    border-radius: 10px;
-    text-align: left;
+  display: block;
+  /* display: none; */
+  margin-top: 2em;
+  background-color: white;
+  padding: 2em;
+  border-radius: 10px;
+  text-align: left;
 }
 
 .textPractice h3 {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
-.textPractice > p {
-    margin-top: 2em;
-    font-size: 1.2rem;
-    line-height: 2rem;
-    color: var(--font-secundary);
-    font-weight: 500;
+.textPractice>p {
+  margin-top: 2em;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  color: var(--font-secundary);
+  font-weight: 500;
 }
 
 .textPractice h4 {
-    margin-top: 2em;
+  margin-top: 2em;
 }
 
 .fontsizeOptions {
-    margin-top: 1em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.fontsizeOptions> label {
-    font-weight: 700;
+.fontsizeOptions>div {
+  display: flex;
+  align-items: center;
+  margin-top: .5em;
+}
+
+.fontsizeOptions>label {
+  font-weight: 700;
 }
 
 .slider {
   -webkit-appearance: none;
   width: 300px;
   height: 10px;
-  border-radius: 5px;  
+  border-radius: 5px;
   background: var(--range-bg);
   outline: none;
   opacity: 0.7;
@@ -53,7 +59,7 @@
   appearance: none;
   width: 20px;
   height: 20px;
-  border-radius: 50%; 
+  border-radius: 50%;
   background: var(--primary);
   cursor: pointer;
 }
@@ -64,4 +70,14 @@
   border-radius: 50%;
   background: var(--primary);
   cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+  .fontsizeOptions {
+    flex-direction: row;
+  }
+
+  .fontsizeOptions>div {
+    margin-top: 0;
+  }
 }

@@ -1,6 +1,11 @@
 .vocabularyPractice {
     margin-top: 2em;
     display: block;
+    width: 100%;
+}
+
+.vocabularyPractice h3 {
+    text-align: center;
 }
 
 .showBtn {
@@ -30,7 +35,7 @@
 .wordPreview {
     background-color: white;
     padding: 2em;
-    height: 15em;
+    min-height: 15em;
     border-radius: 10px;
 }
 

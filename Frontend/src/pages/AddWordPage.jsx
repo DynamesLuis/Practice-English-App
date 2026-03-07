@@ -49,7 +49,9 @@ export default function AddWordPage() {
       <section>
         <h2>Your Vocabylary List</h2>
         <SearchWordForm style={styles.searchForm} onWordFilter={handleWordFilter} />
-        <WordsTable wordsData={words} setWords={setWords} />
+        <div className={styles.tableContainer}>
+          <WordsTable wordsData={words} setWords={setWords} />
+        </div>
         <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </section>
     </main>
