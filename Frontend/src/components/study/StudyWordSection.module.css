@@ -56,10 +56,26 @@
     /* display: flex; */
     flex-direction: column;
     text-align: start;
+    padding: 2em 4em;
 }
 
-.wordAnswers p {
+.wordAnswers h3 {
+    font-size: 1.5em;
+}
+
+.wordAnswers h4 {
+    margin-top: 1em;
+    font-size: 1.2em;
+}
+
+.wordAnswers ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: .5em;
+}
+
+.wordAnswers li {
     color: var(--font-secundary);
     font-weight: 500;
-    margin-top: 1em;
 }

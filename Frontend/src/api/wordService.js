@@ -1,7 +1,11 @@
 import api from './axios'
 
-export const getWords = () => {
-    return api.get("/word")
+export const getWords = (page, size) => {
+    return api.get(`/word?page=${page}&size=${size}`)
+}
+
+export const getRandomWord = () => {
+    return api.get("word/random")
 }
 
 export const postWord = (newWord) => {

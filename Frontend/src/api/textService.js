@@ -1,7 +1,11 @@
 import api from './axios'
 
-export const getTexts = () => {
-    return api.get("/text")
+export const getTexts = (page, size) => {
+    return api.get(`/text?page=${page}&size=${size}`)
+}
+
+export const getRandomText = () => {
+    return api.get("/text/random")
 }
 
 export const postText = (newText) => {

@@ -7,18 +7,18 @@ import AddTextForm from "../components/addResourses/AddTextForm"
 import SearchTextForm from "../components/addResourses/SearchTextForm"
 import { getTexts } from "../api/textService"
 
-const RESULTS_PER_PAGES = 5
+const RESULTS_PER_PAGES = 3
 
 export default function AddTextPage() {
     const [texts, setTexts] = useState([])
     const [editingText, setEditingText] = useState(null)
     const [textToFilter, setTextToFilter] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
+    const [totalPages, setTotalPages] = useState(null)
     const textsFilterByTitle = textToFilter === ""
         ? textsData : textsData.filter(text =>
             text.title.toLowerCase().includes(textToFilter.toLowerCase())
         )
-    const totalPages = Math.ceil(textsFilterByTitle.length / RESULTS_PER_PAGES)
     const pageResults = textsFilterByTitle.slice((currentPage - 1) * RESULTS_PER_PAGES, RESULTS_PER_PAGES * currentPage)
     const handleTextFilter = (textToFilter) => {
         setCurrentPage(1)
@@ -32,15 +32,16 @@ export default function AddTextPage() {
     useEffect(() => {
         const fetchTexts = async () => {
             try {
-                const response = await getTexts()
-                setTexts(response.data)
+                const response = await getTexts(currentPage - 1, RESULTS_PER_PAGES)
+                setTexts(response.data.content)
+                setTotalPages(response.data.totalPages)
             } catch (error) {
                 console.error(error)
             }
         }
 
         fetchTexts()
-    }, [])
+    }, [currentPage])
 
 
     return (
