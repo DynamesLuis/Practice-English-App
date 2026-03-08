@@ -1,6 +1,7 @@
 package com.example.practiceEnglishApp.word;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +19,8 @@ public class WordController {
     }
 
     @GetMapping
-    public List<Word> getWords() {
-        return wordService.getWords();
+    public Page<Word> getWords(@RequestParam int page, @RequestParam int size) {
+        return wordService.getWords(page, size);
     }
 
     @GetMapping(path = {"{word}"})

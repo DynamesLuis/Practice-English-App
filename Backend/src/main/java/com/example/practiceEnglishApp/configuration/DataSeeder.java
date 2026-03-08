@@ -24,20 +24,43 @@ public class DataSeeder {
         return args -> {
             Word word1 = new Word("serendipity");
             Word word2 = new Word("gorgeous");
+            Word word3 = new Word("Reluctant");
+            Word word4 = new Word("Outcome");
+            Word word5 = new Word("Maintain");
+            Word word6 = new Word("Insight");
             Definition def1 = new Definition("the occurrence and development of events by chance in a happy or beneficial way");
             Definition def2 = new Definition("beautiful; very attractive");
+            Definition def3 = new Definition("Feeling unsure or unwilling to do something");
+            Definition def4 = new Definition("The final result of a situation or event");
+            Definition def5 = new Definition("To keep something in good condition or continue something at the same level");
+            Definition def6 = new Definition("A clear and deep understanding of a situation or problem");
             Example example1 = new Example("Success often depends on serendipity and clues turned up by other investigations");
             Example example2 = new Example("she was the most gorgeous woman I'd ever seen");
+            Example example3 = new Example("She was reluctant to speak in front of the entire class");
+            Example example4 = new Example("The outcome of the experiment surprised the researchers");
+            Example example5 = new Example("It is important to maintain good communication with your team");
+            Example example6 = new Example("The book gives valuable insight into how successful companies operate");
             word1.addDefinition(def1);
             word1.addExample(example1);
             word2.addDefinition(def2);
             word2.addExample(example2);
-            wordRepository.saveAll(List.of(word1, word2));
-            definitionRepository.saveAll(List.of(def1, def2));
-            exampleRepository.saveAll(List.of(example1, example2));
+            word3.addDefinition(def3);
+            word3.addExample(example3);
+            word4.addDefinition(def4);
+            word4.addExample(example4);
+            word5.addDefinition(def5);
+            word5.addExample(example5);
+            word6.addDefinition(def6);
+            word6.addExample(example6);
+            wordRepository.saveAll(List.of(word1, word2,word3,word4,word5,word6));
+            definitionRepository.saveAll(List.of(def1, def2,def3,def4,def5,def6));
+            exampleRepository.saveAll(List.of(example1, example2, example3, example4, example5, example6));
             Text text1 = new Text("Modeling girl", "some texttt");
             Text text2 = new Text("Triplet survivor", "some texottoto");
-            textRepository.saveAll(List.of(text1, text2));
+            Text text3 = new Text("Random adventure", "some some text");
+            Text text4 = new Text("My family is happy", "toooo much text");
+            Text text5 = new Text("God bless you", "i don't lnow what to write");
+            textRepository.saveAll(List.of(text1, text2, text3, text4, text5));
         };
     }
 }

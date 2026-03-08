@@ -4,6 +4,9 @@ import com.example.practiceEnglishApp.definition.Definition;
 import com.example.practiceEnglishApp.examples.Example;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,8 +25,9 @@ public class WordService {
         this.wordRepository = wordRepository;
     }
 
-    public List<Word> getWords() {
-        return wordRepository.findAll();
+    public Page<Word> getWords(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return wordRepository.findAll(pageable);
     }
 
     public Word getWordByWord(String word) {

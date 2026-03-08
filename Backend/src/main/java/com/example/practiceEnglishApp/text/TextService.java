@@ -2,6 +2,9 @@ package com.example.practiceEnglishApp.text;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,8 +23,9 @@ public class TextService {
         this.textRepository = textRepository;
     }
 
-    public List<Text> getTexts() {
-        return textRepository.findAll();
+    public Page<Text> getTexts(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return textRepository.findAll(pageable);
     }
 
     public Text getOneText(String title) {

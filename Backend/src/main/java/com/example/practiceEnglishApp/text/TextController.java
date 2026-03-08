@@ -3,6 +3,7 @@ package com.example.practiceEnglishApp.text;
 import org.apache.tomcat.util.http.parser.TE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +22,8 @@ public class TextController {
     }
 
     @GetMapping
-    public List<Text> getTexts() {
-        return textService.getTexts();
+    public Page<Text> getTexts(@RequestParam int page, @RequestParam int size) {
+        return textService.getTexts(page, size);
     }
 
     @GetMapping(path = "/search")
