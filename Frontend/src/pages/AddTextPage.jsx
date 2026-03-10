@@ -1,29 +1,19 @@
 import Pagination from "../components/addResourses/Pagination"
 import styles from "./AddTextPage.module.css"
-import textsData from "../../texts.json"
 import TextsTable from "../components/addResourses/TextsTable"
 import { useEffect, useState } from "react"
 import AddTextForm from "../components/addResourses/AddTextForm"
-import SearchTextForm from "../components/addResourses/SearchTextForm"
-import { getTexts } from "../api/textService"
+import SearchForm from "../components/addResourses/SearchForm"
+import { getTextByTitle, getTexts } from "../api/textService"
 
 const RESULTS_PER_PAGES = 3
 
 export default function AddTextPage() {
     const [texts, setTexts] = useState([])
     const [editingText, setEditingText] = useState(null)
-    const [textToFilter, setTextToFilter] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(null)
-    const textsFilterByTitle = textToFilter === ""
-        ? textsData : textsData.filter(text =>
-            text.title.toLowerCase().includes(textToFilter.toLowerCase())
-        )
-    const pageResults = textsFilterByTitle.slice((currentPage - 1) * RESULTS_PER_PAGES, RESULTS_PER_PAGES * currentPage)
-    const handleTextFilter = (textToFilter) => {
-        setCurrentPage(1)
-        setTextToFilter(textToFilter)
-    }
+
     const handlePageChange = (page) => {
         console.log("changin to page ", page);
         setCurrentPage(page)
@@ -43,6 +33,12 @@ export default function AddTextPage() {
         fetchTexts()
     }, [currentPage])
 
+    const handleSearch = async (title) => {
+        const response = await getTextByTitle(title, 0, RESULTS_PER_PAGES)
+        setTexts(response.data.content)
+        setTotalPages(response.data.totalPages)
+    }
+
 
     return (
         <main className={styles.addTextPage}>
@@ -53,7 +49,7 @@ export default function AddTextPage() {
             </section>
             <section>
                 <h2>Your Texts</h2>
-                <SearchTextForm style={styles.searchForm} onTextFilter={handleTextFilter} />
+                <SearchForm style={styles.searchForm} onSearch={handleSearch}/>
                 <TextsTable textsData={texts} setTexts={setTexts} setEditingText={setEditingText} />
                 <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
             </section>

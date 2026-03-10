@@ -1,7 +1,16 @@
-export default function SearchTextForm({ style, onTextFilter }) {
-    const handleTextChange = (event) => {
-        onTextFilter(event.target.value)
-    }
+import { useEffect, useState } from "react"
+
+export default function SearchForm({ style, onSearch }) {
+    const [wordToFilter, setWordToFilter] = useState("")
+    
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            onSearch(wordToFilter)
+        }, 300)
+
+        return () => clearTimeout(timeout)
+    }, [wordToFilter])
+
     return (
         <form className={style}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -11,7 +20,7 @@ export default function SearchTextForm({ style, onTextFilter }) {
                 <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
                 <path d="M21 21l-6 -6" />
             </svg>
-            <input type="text" placeholder="Search text..." onChange={(event) => handleTextChange(event)}/>
+            <input type="text" placeholder="Search text..." value={wordToFilter} onChange={(e) => setWordToFilter(e.target.value)} />
         </form>
     )
 }

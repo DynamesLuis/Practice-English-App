@@ -4,6 +4,10 @@ export const getTexts = (page, size) => {
     return api.get(`/text?page=${page}&size=${size}`)
 }
 
+export const getTextByTitle = (title, page, size) => {
+    return api.get(`/text/search?title=${title}&page=${page}&size=${size}`)
+}
+
 export const getRandomText = () => {
     return api.get("/text/random")
 }
