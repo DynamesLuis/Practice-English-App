@@ -28,9 +28,9 @@ public class TextService {
         return textRepository.findAll(pageable);
     }
 
-    public Text getOneText(String title) {
-        Optional<Text> searchedText = textRepository.findByTitle(title);
-        return searchedText.orElse(null);
+    public Page<Text> getOneText(String title, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return textRepository.findByTitleContaining(title, pageable);
     }
 
     public Text getRandomText() {

@@ -27,12 +27,8 @@ public class TextController {
     }
 
     @GetMapping(path = "/search")
-    public ResponseEntity<Text> getOneText(@RequestParam(required = true) String title) {
-        Text searchedText = textService.getOneText(title);
-        if (searchedText != null) {
-            return new ResponseEntity<>(searchedText, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public Page<Text> getOneText(@RequestParam(required = true) String title, @RequestParam int page, @RequestParam int size) {
+        return textService.getOneText(title, page, size);
     }
 
     @GetMapping(path = "/random")

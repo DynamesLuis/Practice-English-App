@@ -23,13 +23,9 @@ public class WordController {
         return wordService.getWords(page, size);
     }
 
-    @GetMapping(path = {"{word}"})
-    public ResponseEntity<Word> getWord(@PathVariable("word") String word) {
-        Word searchedWord = wordService.getWordByWord(word);
-        if (searchedWord != null) {
-            return new ResponseEntity<>(searchedWord, HttpStatus.FOUND );
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @GetMapping("/search")
+    public Page<Word> getWord(@RequestParam String word ,@RequestParam int page, @RequestParam int size) {
+        return wordService.getWordByWord(word, page, size);
     }
 
     @GetMapping("/random")

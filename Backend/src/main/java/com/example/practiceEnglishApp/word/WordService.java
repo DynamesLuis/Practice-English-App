@@ -30,9 +30,9 @@ public class WordService {
         return wordRepository.findAll(pageable);
     }
 
-    public Word getWordByWord(String word) {
-        Optional<Word> searchedWord = wordRepository.findByWord(word);
-        return searchedWord.orElse(null);
+    public Page<Word> getWordByWord(String word, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return wordRepository.findByWordContaining(word, pageable);
     }
 
     public Word getRandomWord() {
