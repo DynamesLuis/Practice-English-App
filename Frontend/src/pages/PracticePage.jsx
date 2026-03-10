@@ -3,12 +3,38 @@ import styles from "./PracticePage.module.css"
 import StudyWordSection from "../components/study/StudyWordSection";
 import StudyTextSection from "../components/study/StudyTextSection";
 import CardOptions from "../components/study/CardOptions";
+import { getRandomWord } from "../api/wordService"
+import { getRandomText } from "../api/textService"
 
 export default function PracticePage() {
   const [isPracticeWord, setIsPracticeWord] = useState(true)
+  const [currentWord, setCurrentWord] = useState({})
+  const [currentText, setCurrentText] = useState({})
+  const [answerIsShow, setAnswerIsShow] = useState(false)
 
   const handleClickBtn = (boolean) => {
     setIsPracticeWord(boolean);
+  }
+
+  const fetchRandomWord = async () => {
+    try {
+      const response = await getRandomWord();
+      setCurrentWord(response.data)
+      if (answerIsShow) {
+        setAnswerIsShow(false)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const fetchRandomText = async () => {
+    try {
+      const response = await getRandomText()
+      setCurrentText(response.data)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -20,10 +46,10 @@ export default function PracticePage() {
         <button className={!isPracticeWord ? styles.active : ""} onClick={() => handleClickBtn(false)}>Reading</button>
       </div>
 
-      {isPracticeWord && <StudyWordSection/>}
-      {!isPracticeWord && <StudyTextSection/>}
+      {isPracticeWord && <StudyWordSection fetchRandomWord={fetchRandomWord} currentWord={currentWord} setAnswerIsShow={setAnswerIsShow} answerIsShow={answerIsShow} />}
+      {!isPracticeWord && <StudyTextSection currentText={currentText} fetchRandomText={fetchRandomText}/>}
 
-      <CardOptions/>
+      <CardOptions fetchRandomWord={fetchRandomWord} fetchRandomText={fetchRandomText} isPracticeWord={isPracticeWord}/>
     </main>
 
   )

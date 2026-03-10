@@ -1,26 +1,16 @@
 import { useEffect, useState } from "react"
 import styles from "./StudyTextSection.module.css"
-import { getRandomText } from "../../api/textService"
 
 
-export default function StudyTextSection() {
+
+export default function StudyTextSection({currentText, fetchRandomText}) {
     const [fontSize, setFontSize] = useState(14)
-    const [currentText, setCurrentText] = useState({})
 
     const handleChange = (e) => {
         setFontSize(e.target.value)
     }
 
     useEffect(() => {
-        const fetchRandomText = async() => {
-            try {
-                const response = await getRandomText()
-                setCurrentText(response.data)
-            } catch (error) {
-                console.error(error)
-            }
-        }
-
         fetchRandomText()
     }, [])
 
@@ -34,7 +24,7 @@ export default function StudyTextSection() {
             <div className={styles.fontsizeOptions}>
                 <p>Font size</p>
                 <div>
-                    <input type="range" name="" id="slider" className={styles.slider} step={1} value={fontSize} min={12} max={18} onChange={handleChange}/>
+                    <input type="range" name="" id="slider" className={styles.slider} step={1} value={fontSize} min={12} max={18} onChange={handleChange} />
                     <label htmlFor="slider-range">{fontSize}</label>
                 </div>
             </div>
