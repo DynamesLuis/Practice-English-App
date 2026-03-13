@@ -47,5 +47,9 @@ public class WordController {
         return new ResponseEntity<>("Word deleted successfully", HttpStatus.OK);
     }
 
-    //edit word falta
+    @PutMapping(path = {"{wordId}"})
+    public ResponseEntity<Word> updateWord(@PathVariable("wordId") Long wordId, @RequestBody Word wordToUpdate) {
+        Word updatedWord = wordService.updateWord(wordId, wordToUpdate);
+        return new ResponseEntity<>(updatedWord, HttpStatus.OK);
+    }
 }

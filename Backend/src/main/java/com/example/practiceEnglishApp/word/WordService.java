@@ -7,13 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class WordService {
@@ -71,4 +69,71 @@ public class WordService {
         }
         wordRepository.deleteById(wordId);
     }
+
+    @Transactional
+    public Word updateWord(Long wordId, Word wordToUpdate) {
+        Word existingWord = wordRepository.findById(wordId)
+                .orElseThrow(() -> new EntityNotFoundException("The word with id " + wordId + " does not exist"));
+
+        if (wordToUpdate.getWord() != null &&
+                !wordToUpdate.getWord().isEmpty() &&
+                !Objects.equals(existingWord.getWord(), wordToUpdate.getWord())) {
+            existingWord.setWord(wordToUpdate.getWord());
+        }
+
+        if(wordToUpdate.getDefinitions().isEmpty()){
+            throw new RuntimeException("At least one definition required");
+        }
+
+        if(wordToUpdate.getExamples().isEmpty()){
+            throw new RuntimeException("At least one example required");
+        }
+
+        updateDefinitions(existingWord, wordToUpdate.getDefinitions());
+        updateExamples(existingWord, wordToUpdate.getExamples());
+
+        return wordRepository.save(existingWord);
+    }
+
+    private void  updateDefinitions(Word existingWord, Set<Definition> incomingDefinitions) {
+        Set<Definition> existingDefinitions = existingWord.getDefinitions();
+        Map<Long, Definition> existingMap = existingDefinitions.stream()
+                .filter(definition -> definition.getId() != null)
+                .collect(Collectors.toMap(Definition::getId, definition -> definition));
+        Set<Definition> resultDefinitions = new HashSet<>();
+        for (Definition incomingDefinition: incomingDefinitions) {
+            if (incomingDefinition.getId() != null && existingMap.containsKey(incomingDefinition.getId())) {
+                Definition existing = existingMap.get(incomingDefinition.getId());
+                existing.setDefinition(incomingDefinition.getDefinition());
+                resultDefinitions.add(existing);
+            } else {
+                incomingDefinition.setWord(existingWord);
+                resultDefinitions.add(incomingDefinition);
+            }
+        }
+        existingDefinitions.clear();
+        existingDefinitions.addAll(resultDefinitions);
+    }
+
+    public void updateExamples(Word existingWord, Set<Example> incomingExamples) {
+        Set<Example> existingExamples = existingWord.getExamples();
+        Map<Long, Example> existingMap = existingExamples.stream()
+                .filter(example -> example.getId() != null)
+                .collect(Collectors.toMap(Example::getId, example -> example));
+        Set<Example> resultsExamples = new HashSet<>();
+        for (Example incomingExample: incomingExamples) {
+            if (incomingExample.getId() != null && existingMap.containsKey(incomingExample.getId())) {
+                Example existing = existingMap.get(incomingExample.getId());
+                existing.setExample(incomingExample.getExample());
+                resultsExamples.add(existing);
+            } else {
+                incomingExample.setWord(existingWord);
+                resultsExamples.add(incomingExample);
+            }
+        }
+        existingExamples.clear();
+        existingExamples.addAll(resultsExamples);
+    }
+
 }
+

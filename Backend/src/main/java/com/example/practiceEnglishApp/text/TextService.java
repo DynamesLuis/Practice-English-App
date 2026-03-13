@@ -62,13 +62,13 @@ public class TextService {
                 .orElseThrow(()->  new EntityNotFoundException("The text with id " + textId + "doesn't exist"));
 
         if (title != null &&
-            title.length() > 0 &&
+                !title.isEmpty() &&
             !Objects.equals(existingText.getTitle(), title)) {
             existingText.setTitle(title);
         }
 
         if (text != null &&
-                text.length() > 0 &&
+                !text.isEmpty() &&
                 !Objects.equals(existingText.getText(), text)) {
             existingText.setText(text);
         }

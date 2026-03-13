@@ -18,7 +18,7 @@ public class Example {
             generator = "example_sequence"
     )
 
-    private long id;
+    private Long id;
     private String example;
     @ManyToOne
     @JoinColumn(name = "word_id", nullable = false)
@@ -39,11 +39,11 @@ public class Example {
         this.example = example;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

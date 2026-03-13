@@ -18,7 +18,7 @@ public class Definition {
             generator = "definition_sequence"
     )
 
-    private long id;
+    private Long id;
     private String definition;
     @ManyToOne
     @JoinColumn(name = "word_id", nullable = false)
@@ -29,7 +29,7 @@ public class Definition {
 
     }
 
-    public Definition(long id,
+    public Definition(Long id,
                       String definition,
                       Word word) {
         this.id = id;
@@ -45,11 +45,11 @@ public class Definition {
         this.definition = definition;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
