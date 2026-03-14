@@ -17,7 +17,7 @@ const INITIAL_EXAMPLES_STATE = [{
     dbId: null
 }]
 
-export default function AddWordForm({ style, editingWord, setEditingWord, fetchWords, pageSize, words }) {
+export default function AddWordForm({ style, editingWord, setEditingWord, fetchWords, pageSize, words, setWords }) {
     const [word, setWord] = useState("")
     const [definitions, setDefinitions] = useState(INITIAL_DEFINITIONS_STATE)
     const listDefinitions = definitions.map((definition, index) => {
@@ -115,11 +115,16 @@ export default function AddWordForm({ style, editingWord, setEditingWord, fetchW
         setExamples(INITIAL_EXAMPLES_STATE)
     }
 
-    const editWord = async (word) => {
+    const editWord = async (payload) => {
         try {
-            const response = await putWord(editingWord.id, word)
-            console.log(response)
-            setEditingWord(null);
+            const response = await putWord(editingWord.id, payload)
+            const updatedWord = await response.data
+            setWords(prev => 
+                prev.map(currentWord => 
+                    currentWord.id === updatedWord.id ? updatedWord : currentWord
+                )
+            )
+            setEditingWord(null)
         } catch (error) {
             console.error(error)
         }
