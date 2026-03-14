@@ -38,7 +38,8 @@ export default function AddTextForm({ style, setTexts, editingText, setEditingTe
         const { title, text } = formValues
         try {
             const response = await putText(textId, title, text)
-            setTexts(prev => prev.map(prevText => prevText.id === textId ? { ...prevText, title: title, text: text } : prevText))
+            const updatedText = await response.data
+            setTexts(prev => prev.map(prevText => prevText.id === updatedText.id ? { ...prevText, title: title, text: text } : prevText))
             setEditingText(null)
         } catch (error) {
             console.error(error)
