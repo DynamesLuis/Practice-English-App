@@ -1,6 +1,6 @@
 import { deleteWord } from "../../api/wordService"
 
-export default function WordsTable({ wordsData, setWords }) {
+export default function WordsTable({ wordsData, setWords, setEditingWord }) {
     const handleDeleteWord = async (idWord) => {
         try {
             await deleteWord(idWord)
@@ -10,6 +10,10 @@ export default function WordsTable({ wordsData, setWords }) {
         } catch (error) {
             console.error(error)
         }
+    }
+
+    const handleEditWord = (word) => {
+        setEditingWord(word)
     }
 
     return (
@@ -22,18 +26,21 @@ export default function WordsTable({ wordsData, setWords }) {
                 </tr>
             </thead>
             <tbody>
-                {console.log(wordsData, "words in state")
-                }
                 {wordsData.map(word => (
                     <tr key={word.id}>
                         <th>{word.word}</th>
                         <th>
-                            {word.definitions.map(definition => (<p key={definition.id}>{definition.definition}</p>))}
+                            <ul>
+                                {word.definitions.map(definition => (<li key={definition.id}>{definition.definition}</li>))}
+                            </ul>
                         </th>
                         <th>
-                            {word.examples.map(example => (<p key={example.id}>{example.example}</p>))}
+                            <ul>
+                                {word.examples.map(example => (<li key={example.id}>{example.example}</li>))}
+
+                            </ul>
                         </th>
-                        <th><button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        <th><button onClick={() => handleEditWord(word)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="#13a4ec" strokeWidth="2" strokeLinecap="round"
                             strokeLinejoin="round"
                             className="icon icon-tabler icons-tabler-outline icon-tabler-pencil">

@@ -14,7 +14,6 @@ export default function TextsTable({ textsData, setTexts, setEditingText }) {
 
     const handleEditClick = (text) => {
         setEditingText(text)
-        console.log(text);
     }
 
     return (

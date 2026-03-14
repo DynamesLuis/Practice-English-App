@@ -16,6 +16,10 @@ export const postWord = (newWord) => {
     return api.post("/word", newWord)
 }
 
+export const putWord = (idWord, word) => {
+    return api.put(`/word/${idWord}`, word)
+}
+
 export const deleteWord = (idWord) => {
     return api.delete(`/word/${idWord}`)
 }

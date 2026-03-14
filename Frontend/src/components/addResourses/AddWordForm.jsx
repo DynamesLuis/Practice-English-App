@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { postWord } from "../../api/wordService"
+import { useEffect, useState } from "react"
+import { postWord, putWord } from "../../api/wordService"
 
 function generateId() {
     return crypto.randomUUID()
@@ -17,11 +17,9 @@ const INITIAL_EXAMPLES_STATE = [{
     dbId: null
 }]
 
-export default function AddWordForm({ style, setWords }) {
+export default function AddWordForm({ style, editingWord, setEditingWord, fetchWords, pageSize, words }) {
     const [word, setWord] = useState("")
-
     const [definitions, setDefinitions] = useState(INITIAL_DEFINITIONS_STATE)
-
     const listDefinitions = definitions.map((definition, index) => {
         const isFirst = index === 0
         return (
@@ -35,6 +33,9 @@ export default function AddWordForm({ style, setWords }) {
             </div>
         )
     });
+    const isEditingWord = editingWord !== null
+    const submitBtnText = editingWord ? "Edit Word" : "Add word"
+
 
     const handleAddDefinition = () => {
         setDefinitions(prev => [...prev, {
@@ -94,26 +95,67 @@ export default function AddWordForm({ style, setWords }) {
         event.preventDefault()
         const payload = {
             word: word,
-            definitions: definitions.map(definition => ({ definition: definition.definition })),
-            examples: examples.map(example => ({ example: example.example }))
+            definitions: definitions.map(definition => ({
+                ...(definition.id !== null && { id: definition.id }),
+                definition: definition.definition
+            })),
+            examples: examples.map(example => ({
+                ...(example.id !== null && { id: example.id }),
+                example: example.example
+            }))
         }
+        if (isEditingWord) {
+            editWord(payload)
+        } else {
+            addWord(payload)
+        }
+
         setWord("")
         setDefinitions(INITIAL_DEFINITIONS_STATE)
         setExamples(INITIAL_EXAMPLES_STATE)
-        addWord(payload)
-        //console.log(payload);
-        
     }
 
-    const addWord = async(newWord) => {
+    const editWord = async (word) => {
         try {
-            const response = await postWord(newWord)
-            const createWord = response.data
-            setWords(prev => [...prev, createWord])
+            const response = await putWord(editingWord.id, word)
+            console.log(response)
+            setEditingWord(null);
         } catch (error) {
             console.error(error)
         }
     }
+
+    const addWord = async (newWord) => {
+        try {
+            const response = await postWord(newWord)
+            const createWord = response.data
+            console.log(createWord);
+            if (words.length < pageSize) {
+                fetchWords()
+            }
+
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    useEffect(() => {
+        if (editingWord) {
+            setWord(editingWord.word)
+            setDefinitions(
+                editingWord.definitions.map(definition => ({
+                    ...definition,
+                    renderId: generateId()
+                }))
+            );
+            setExamples(
+                editingWord.examples.map(example => ({
+                    ...example,
+                    renderId: generateId()
+                }))
+            )
+        }
+    }, [editingWord])
 
     return (
         <form className={style} onSubmit={(event) => handleSubmit(event)}>
@@ -153,7 +195,7 @@ export default function AddWordForm({ style, setWords }) {
                     <path d="M12 5l0 14" />
                     <path d="M5 12l14 0" />
                 </svg>
-                Add word
+                {submitBtnText}
             </button>
         </form>
     )
