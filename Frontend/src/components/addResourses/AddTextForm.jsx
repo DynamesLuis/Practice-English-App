@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { postText, putText } from "../../api/textService"
 
-export default function AddTextForm({ style, setTexts, editingText, setEditingText }) {
+export default function AddTextForm({ style, setTexts, editingText, setEditingText, fetchTexts, pageSize, texts }) {
     const isEditing = editingText !== null
     const submitBtnText = isEditing ? "Edit text" : "Add text"
 
@@ -49,7 +49,10 @@ export default function AddTextForm({ style, setTexts, editingText, setEditingTe
         try {
             const response = await postText(formValues)
             const textAdded = response.data
-            setTexts(prev => [...prev, textAdded])
+            console.log(textAdded);
+            if (texts.length < pageSize) {
+                fetchTexts()
+            }
         } catch (error) {
             console.error(error)
         }
