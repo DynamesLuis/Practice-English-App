@@ -27,7 +27,7 @@ export default function AddWordPage() {
       setWords(response.data.content)
       setTotalPages(response.data.totalPages)
       console.log("fetching words");
-      
+
     } catch (error) {
       console.error(error)
     }
@@ -54,14 +54,20 @@ export default function AddWordPage() {
           setEditingWord={setEditingWord}
           fetchWords={fetchWords}
           pageSize={RESULTS_PER_PAGE}
-          words={words} 
-          setWords={setWords}/>
+          words={words}
+          setWords={setWords} />
       </section>
       <section>
         <h2>Your Vocabylary List</h2>
         <SearchForm style={styles.searchForm} onSearch={handleSearch} />
         <div className={styles.tableContainer}>
-          <WordsTable wordsData={words} setWords={setWords} setEditingWord={setEditingWord} />
+          <WordsTable
+            wordsData={words}
+            setEditingWord={setEditingWord}
+            fetchWords={fetchWords}
+            size={RESULTS_PER_PAGE}
+            setWords={setWords} 
+            totalPages={totalPages}/>
         </div>
         <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </section>

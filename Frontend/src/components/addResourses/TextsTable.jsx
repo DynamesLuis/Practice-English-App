@@ -1,12 +1,16 @@
 import { deleteText } from "../../api/textService"
 
-export default function TextsTable({ textsData, setTexts, setEditingText }) {
+export default function TextsTable({ textsData, setTexts, setEditingText, totalPages, fetchTexts }) {
     const handleDeleteText = async (textId) => {
         try {
             await deleteText(textId)
-            setTexts(prev =>
-                prev.filter(text => text.id !== textId)
-            )
+             if (totalPages < 2) {
+                setTexts(prev =>
+                    prev.filter(text => text.id !== textId)
+                )
+            } else {
+                fetchTexts()
+            }
         } catch (error) {
             console, error(error)
         }

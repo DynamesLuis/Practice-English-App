@@ -1,12 +1,16 @@
 import { deleteWord } from "../../api/wordService"
 
-export default function WordsTable({ wordsData, setWords, setEditingWord }) {
+export default function WordsTable({ wordsData, setEditingWord, fetchWords, totalPages, setWords }) {
     const handleDeleteWord = async (idWord) => {
         try {
             await deleteWord(idWord)
-            setWords(prev =>
-                prev.filter(word => word.id !== idWord)
-            )
+            if (totalPages < 2) {
+                setWords(prev =>
+                    prev.filter(word => word.id !== idWord)
+                )
+            } else {
+                fetchWords()
+            }
         } catch (error) {
             console.error(error)
         }

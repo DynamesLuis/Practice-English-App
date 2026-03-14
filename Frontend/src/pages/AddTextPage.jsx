@@ -15,7 +15,6 @@ export default function AddTextPage() {
     const [totalPages, setTotalPages] = useState(null)
 
     const handlePageChange = (page) => {
-        console.log("changin to page ", page);
         setCurrentPage(page)
     }
 
@@ -46,18 +45,23 @@ export default function AddTextPage() {
                 <h2>Add New Texts</h2>
                 <p>Expan your library by adding texts to practice with.</p>
                 <AddTextForm
-                    style={styles.textForm} 
-                    setTexts={setTexts} 
-                    editingText={editingText} 
-                    setEditingText={setEditingText} 
+                    style={styles.textForm}
+                    setTexts={setTexts}
+                    editingText={editingText}
+                    setEditingText={setEditingText}
                     fetchTexts={fetchTexts}
                     pageSize={RESULTS_PER_PAGES}
-                    texts={texts}/>
+                    texts={texts} />
             </section>
             <section>
                 <h2>Your Texts</h2>
                 <SearchForm style={styles.searchForm} onSearch={handleSearch} />
-                <TextsTable textsData={texts} setTexts={setTexts} setEditingText={setEditingText} />
+                <TextsTable
+                    textsData={texts}
+                    setTexts={setTexts}
+                    setEditingText={setEditingText}
+                    fetchTexts={fetchTexts}
+                    totalPages={totalPages} />
                 <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
             </section>
         </main>
