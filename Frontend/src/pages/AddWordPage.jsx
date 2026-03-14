@@ -54,7 +54,8 @@ export default function AddWordPage() {
           setEditingWord={setEditingWord}
           fetchWords={fetchWords}
           pageSize={RESULTS_PER_PAGE}
-          words={words} />
+          words={words} 
+          setWords={setWords}/>
       </section>
       <section>
         <h2>Your Vocabylary List</h2>
