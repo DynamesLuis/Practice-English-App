@@ -132,8 +132,8 @@ export default function AddWordForm({ style, editingWord, setEditingWord, fetchW
         try {
             const response = await putWord(editingWord.id, payload)
             const updatedWord = await response.data
-            setWords(prev =>
-                prev.map(currentWord =>
+            setWords(prev => 
+                prev.map(currentWord => 
                     currentWord.id === updatedWord.id ? updatedWord : currentWord
                 )
             )
