@@ -50,6 +50,8 @@ public class WordService {
             throw new IllegalArgumentException("A word must have at least one definition and one example.");
         }
 
+        newWord.setWord(normalize(newWord.getWord()));
+
         for (Definition definition : newWord.getDefinitions()) {
             definition.setWord(newWord);
         }
@@ -133,6 +135,10 @@ public class WordService {
         }
         existingExamples.clear();
         existingExamples.addAll(resultsExamples);
+    }
+
+    private String normalize(String text) {
+        return text.trim().toLowerCase();
     }
 
 }
