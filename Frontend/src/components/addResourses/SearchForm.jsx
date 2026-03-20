@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react"
+import {normalize} from "../../utils/text"
 
 export default function SearchForm({ style, onSearch }) {
     const [wordToFilter, setWordToFilter] = useState("")
     
     useEffect(() => {
         const timeout = setTimeout(() => {
-            onSearch(wordToFilter)
+            const normalizeWord = normalize(wordToFilter);
+            onSearch(normalizeWord)
         }, 300)
 
         return () => clearTimeout(timeout)
