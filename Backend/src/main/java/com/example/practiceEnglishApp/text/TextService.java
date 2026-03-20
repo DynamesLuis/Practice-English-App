@@ -44,7 +44,7 @@ public class TextService {
     }
 
     public Text addNewText(Text text) {
-        text.setText(normalize(text.getText()));
+        text.setTitle(normalize(text.getTitle()));
         return textRepository.save(text);
     }
 
