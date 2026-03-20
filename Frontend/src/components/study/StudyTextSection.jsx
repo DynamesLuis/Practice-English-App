@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import styles from "./StudyTextSection.module.css"
-
-
+import { capitalize } from "../../utils/text"
 
 export default function StudyTextSection({currentText, fetchRandomText}) {
     const [fontSize, setFontSize] = useState(14)
@@ -16,7 +15,7 @@ export default function StudyTextSection({currentText, fetchRandomText}) {
 
     return (
         <section className={styles.textPractice}>
-            <h3>{currentText.title}</h3>
+            <h3>{capitalize(currentText.title)}</h3>
             <p style={{ fontSize: `${fontSize}px` }}>
                 {currentText.text}
             </p>

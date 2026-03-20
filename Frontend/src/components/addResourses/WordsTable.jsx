@@ -1,4 +1,5 @@
 import { deleteWord } from "../../api/wordService"
+import { capitalize } from "../../utils/text"
 
 export default function WordsTable({ wordsData, setEditingWord, fetchWords, totalPages, setWords }) {
     const handleDeleteWord = async (idWord) => {
@@ -32,15 +33,15 @@ export default function WordsTable({ wordsData, setEditingWord, fetchWords, tota
             <tbody>
                 {wordsData.map(word => (
                     <tr key={word.id}>
-                        <th>{word.word}</th>
+                        <th>{capitalize(word.word)}</th>
                         <th>
                             <ul>
-                                {word.definitions.map(definition => (<li key={definition.id}>{definition.definition}</li>))}
+                                {word.definitions.map(definition => (<li key={definition.id}>{capitalize(definition.definition)}</li>))}
                             </ul>
                         </th>
                         <th>
                             <ul>
-                                {word.examples.map(example => (<li key={example.id}>{example.example}</li>))}
+                                {word.examples.map(example => (<li key={example.id}>{capitalize(example.example)}</li>))}
 
                             </ul>
                         </th>

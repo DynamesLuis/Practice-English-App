@@ -28,7 +28,7 @@
 }
 
 .textForm label:nth-child(2) {
-    margin-top: 2em;
+    margin-top: 0em;
 }
 
 .textForm input,
@@ -73,6 +73,13 @@
     &:hover {
         opacity: .9;
     }
+}
+
+.textForm p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: .7rem;
+    color: red;
 }
 
 section:nth-child(2) {

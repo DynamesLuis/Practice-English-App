@@ -20,6 +20,7 @@ const INITIAL_EXAMPLES_STATE = [{
 export default function AddWordForm({ style, editingWord, setEditingWord, fetchWords, pageSize, words, setWords }) {
     const [word, setWord] = useState("")
     const [definitions, setDefinitions] = useState(INITIAL_DEFINITIONS_STATE)
+    const [errors, setErrors] = useState({});
     const listDefinitions = definitions.map((definition, index) => {
         const isFirst = index === 0
         return (
@@ -30,12 +31,14 @@ export default function AddWordForm({ style, editingWord, setEditingWord, fetchW
                     </button>
                 )}
                 <textarea value={definition.definition} onChange={(event) => handleChangeDefinition(definition.renderId, event.target.value)}></textarea>
+                {errors[definition.renderId] && (
+                    <p>{errors[definition.renderId]}</p>
+                )}
             </div>
         )
     });
     const isEditingWord = editingWord !== null
     const submitBtnText = editingWord ? "Edit Word" : "Add word"
-
 
     const handleAddDefinition = () => {
         setDefinitions(prev => [...prev, {
@@ -68,6 +71,9 @@ export default function AddWordForm({ style, editingWord, setEditingWord, fetchW
                     </button>
                 )}
                 <textarea value={example.example} onChange={(event) => handleChangeExample(example.renderId, event.target.value)}></textarea>
+                {errors[example.renderId] && (
+                    <p>{errors[example.renderId]}</p>
+                )}
             </div>
         )
     });
@@ -104,6 +110,13 @@ export default function AddWordForm({ style, editingWord, setEditingWord, fetchW
                 example: example.example
             }))
         }
+
+        const validationErrors = validate()
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors)
+            return
+        }
+
         if (isEditingWord) {
             editWord(payload)
         } else {
@@ -162,10 +175,33 @@ export default function AddWordForm({ style, editingWord, setEditingWord, fetchW
         }
     }, [editingWord])
 
+    const validate = () => {
+        const errors = {}
+
+        if (!word.trim()) {
+            errors.word = "Word must not be empty"
+        }
+
+        definitions.forEach(definition => {
+            if (!definition.definition.trim()) {
+                errors[definition.renderId] = "Definition must not be empty"
+            }
+        })
+
+        examples.forEach(example => {
+            if (!example.example.trim()) {
+                errors[example.renderId] = "Example must not be empty"
+            }
+        })
+
+        return errors
+    }
+
     return (
         <form className={style} onSubmit={(event) => handleSubmit(event)}>
             <label htmlFor="word">Word</label>
             <input type="text" id="word" value={word} onChange={(event) => setWord(event.target.value)} />
+            <p>{errors.word}</p>
             <label htmlFor="meaning">Meaning</label>
             <div className="meaning-container">
                 {listDefinitions}

@@ -44,6 +44,7 @@ public class TextService {
     }
 
     public Text addNewText(Text text) {
+        text.setTitle(normalize(text.getTitle()));
         return textRepository.save(text);
     }
 
@@ -74,5 +75,9 @@ public class TextService {
         }
 
         return existingText;
+    }
+
+    private String normalize(String text) {
+        return text.trim().toLowerCase();
     }
 }

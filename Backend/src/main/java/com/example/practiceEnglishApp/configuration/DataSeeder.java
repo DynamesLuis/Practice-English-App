@@ -24,10 +24,10 @@ public class DataSeeder {
         return args -> {
             Word word1 = new Word("serendipity");
             Word word2 = new Word("gorgeous");
-            Word word3 = new Word("Reluctant");
-            Word word4 = new Word("Outcome");
-            Word word5 = new Word("Maintain");
-            Word word6 = new Word("Insight");
+            Word word3 = new Word("reluctant");
+            Word word4 = new Word("outcome");
+            Word word5 = new Word("maintain");
+            Word word6 = new Word("insight");
             Definition def1 = new Definition("the occurrence and development of events by chance in a happy or beneficial way");
             Definition def2 = new Definition("beautiful; very attractive");
             Definition def3 = new Definition("Feeling unsure or unwilling to do something");
@@ -55,11 +55,11 @@ public class DataSeeder {
             wordRepository.saveAll(List.of(word1, word2,word3,word4,word5,word6));
             definitionRepository.saveAll(List.of(def1, def2,def3,def4,def5,def6));
             exampleRepository.saveAll(List.of(example1, example2, example3, example4, example5, example6));
-            Text text1 = new Text("Modeling girl", "some texttt");
-            Text text2 = new Text("Triplet survivor", "some texottoto");
-            Text text3 = new Text("Random adventure", "some some text");
-            Text text4 = new Text("My family is happy", "toooo much text");
-            Text text5 = new Text("God bless you", "i don't lnow what to write");
+            Text text1 = new Text("modeling girl", "some texttt");
+            Text text2 = new Text("triplet survivor", "some texottoto");
+            Text text3 = new Text("random adventure", "some some text");
+            Text text4 = new Text("my family is happy", "toooo much text");
+            Text text5 = new Text("god bless you", "i don't lnow what to write");
             textRepository.saveAll(List.of(text1, text2, text3, text4, text5));
         };
     }

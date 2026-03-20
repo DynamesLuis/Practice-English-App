@@ -78,6 +78,12 @@ section:first-child {
     padding: .3em;
 }
 
+.wordForm p {
+    margin-top: 5px;
+    font-size: .7rem;
+    color: red;
+}
+
 section:last-child {
     flex: 3;
     position: relative;

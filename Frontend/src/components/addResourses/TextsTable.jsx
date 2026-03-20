@@ -1,4 +1,5 @@
 import { deleteText } from "../../api/textService"
+import {capitalize} from "../../utils/text"
 
 export default function TextsTable({ textsData, setTexts, setEditingText, totalPages, fetchTexts }) {
     const handleDeleteText = async (textId) => {
@@ -30,7 +31,7 @@ export default function TextsTable({ textsData, setTexts, setEditingText, totalP
             <tbody>
                 {textsData.map(text => (
                     <tr key={text.id}>
-                        <td>{text.title}</td>
+                        <td>{capitalize(text.title)}</td>
                         <td><button onClick={() => handleEditClick(text)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="#13a4ec" strokeWidth="2" strokeLinecap="round"
                             strokeLinejoin="round"
