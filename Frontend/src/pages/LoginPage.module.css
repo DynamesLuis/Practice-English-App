@@ -1,0 +1,132 @@
+.loginPage {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100dvh;
+}
+
+.authCard {
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    margin: 16px;
+}
+
+.authHeader {
+    text-align: center;
+}
+
+.auth-header h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.auth-header p {
+    font-size: 14px;
+    color: var(--font-secundary);
+}
+
+.form {
+    margin-top: 24px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputGroup input {
+    padding: 12px;
+    border: 1px solid var(--border-hover);
+    font-size: 14px;
+}
+
+.inputGroup input:first-child {
+    border-radius: 8px 8px 0 0;
+}
+
+.inputGroup input:last-child {
+    border-radius: 0 0 8px 8px;
+}
+
+.inputGroup input:focus {
+    outline-color: var(--primary);
+}
+
+.formOptions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 16px 0;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+}
+
+.link {
+    font-size: 14px;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.formActions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn.primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn.primary:hover {
+    opacity: 0.9;
+}
+
+.btn.secondary {
+    background: var( --primary-light);
+    color: var(--primary);
+}
+
+.btn.secondary:hover {
+    background: #13a4ec44;
+}
+
+.terms {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--font-secundary);
+}
+
+.terms a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+}
