@@ -1,10 +1,16 @@
 import styles from "./StudyWordSection.module.css"
 import { capitalize } from "../../utils/text"
 
-export default function WordPreview({ handleShowBtn, currentWord }) {
+export default function WordPreview({ handleShowBtn, currentWord, isRefetching }) {
+    let h3Text = ""
+
+    if (!isRefetching) {
+        h3Text = capitalize(currentWord.word)
+    }
+
     return (
         <div className={styles.wordPreview}>
-            <h3>{capitalize(currentWord.word)}</h3>
+            <h3>{h3Text}</h3>
             <button className={styles.showBtn} onClick={handleShowBtn}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"

@@ -1,41 +1,47 @@
 import { useState } from "react"
 import styles from "./PracticePage.module.css"
-import StudyWordSection from "../components/study/StudyWordSection";
-import StudyTextSection from "../components/study/StudyTextSection";
-import CardOptions from "../components/study/CardOptions";
-import { getRandomWord } from "../api/wordService"
-import { getRandomText } from "../api/textService"
+import StudyWordSection from "../components/study/StudyWordSection"
+import StudyTextSection from "../components/study/StudyTextSection"
+import CardOptions from "../components/study/CardOptions"
+import { useQuery } from "@tanstack/react-query"
+import { fetchRandomWord } from "../api/fetchWords"
+import { fetchRandomText } from "../api/fetchText"
 
 export default function PracticePage() {
   const [isPracticeWord, setIsPracticeWord] = useState(true)
-  const [currentWord, setCurrentWord] = useState({})
-  const [currentText, setCurrentText] = useState({})
   const [answerIsShow, setAnswerIsShow] = useState(false)
 
   const handleClickBtn = (boolean) => {
     setIsPracticeWord(boolean);
   }
 
-  const fetchRandomWord = async () => {
-    try {
-      const response = await getRandomWord();
-      setCurrentWord(response.data)
-      if (answerIsShow) {
-        setAnswerIsShow(false)
-      }
-    } catch (error) {
-      console.error(error)
-    }
-  }
 
-  const fetchRandomText = async () => {
-    try {
-      const response = await getRandomText()
-      setCurrentText(response.data)
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  const {
+    data: word,
+    isLoading: isLoadingWord,
+    isError: isErrorWord,
+    error: errorWord,
+    refetch: refetchWord,
+    isRefetching: isRefetchingWord,
+  } = useQuery({
+    queryKey: ['word'],
+    queryFn: fetchRandomWord,
+    refetchOnMount: false,
+  });
+
+  const {
+    data: text,
+    isLoading: isLoadingText,
+    isError: isErrorText,
+    error: errorText,
+    refetch: refetchText,
+    isRefetching: isRefetchingText,
+  } = useQuery({
+    queryKey: ['text'],
+    queryFn: fetchRandomText,
+    refetchOnMount: false,
+  });
+
 
   return (
     <main className={styles.practicePage}>
@@ -46,10 +52,25 @@ export default function PracticePage() {
         <button className={!isPracticeWord ? styles.active : ""} onClick={() => handleClickBtn(false)}>Reading</button>
       </div>
 
-      {isPracticeWord && <StudyWordSection fetchRandomWord={fetchRandomWord} currentWord={currentWord} setAnswerIsShow={setAnswerIsShow} answerIsShow={answerIsShow} />}
-      {!isPracticeWord && <StudyTextSection currentText={currentText} fetchRandomText={fetchRandomText}/>}
+      {isPracticeWord && <StudyWordSection
+        setAnswerIsShow={setAnswerIsShow}
+        answerIsShow={answerIsShow}
+        isLoading={isLoadingWord}
+        isError={isErrorWord}
+        error={errorWord}
+        word={word}
+        isRefetching={isRefetchingWord} />}
+      {!isPracticeWord && <StudyTextSection
+        error={errorText}
+        isError={isErrorText}
+        isLoading={isLoadingText}
+        text={text}
+        isRefetching={isRefetchingText} />}
 
-      <CardOptions fetchRandomWord={fetchRandomWord} fetchRandomText={fetchRandomText} isPracticeWord={isPracticeWord}/>
+      <CardOptions isPracticeWord={isPracticeWord}
+        fetchRandomText={refetchText}
+        fetchRandomWord={refetchWord}
+        setAnswerIsShow={setAnswerIsShow} />
     </main>
 
   )

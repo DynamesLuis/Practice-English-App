@@ -1,12 +1,13 @@
 import styles from "./CardOptions.module.css"
 
-export default function CardOptions({fetchRandomWord, fetchRandomText, isPracticeWord}) {
+export default function CardOptions({fetchRandomWord, fetchRandomText, isPracticeWord, setAnswerIsShow}) {
     const handleNext = () => {
         if(isPracticeWord) {
             fetchRandomWord()
         } else {
             fetchRandomText()
         }
+        setAnswerIsShow(false)
     }
 
     return (

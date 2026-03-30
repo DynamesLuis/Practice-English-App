@@ -1,23 +1,27 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import styles from "./StudyTextSection.module.css"
 import { capitalize } from "../../utils/text"
 
-export default function StudyTextSection({currentText, fetchRandomText}) {
+export default function StudyTextSection({ text, error, isLoading, isError, isRefetching }) {
+    let h3Text = ""
+    if (!isRefetching) {
+        h3Text = capitalize(text.title)
+    }
+
     const [fontSize, setFontSize] = useState(14)
 
     const handleChange = (e) => {
         setFontSize(e.target.value)
     }
 
-    useEffect(() => {
-        fetchRandomText()
-    }, [])
+    if (isLoading) return <p>Loading...</p>;
+    if (isError) return <p>Error: {error.message}</p>
 
     return (
         <section className={styles.textPractice}>
-            <h3>{capitalize(currentText.title)}</h3>
+            <h3>{h3Text}</h3>
             <p style={{ fontSize: `${fontSize}px` }}>
-                {currentText.text}
+                {text.text}
             </p>
             <h4>Lecture options</h4>
             <div className={styles.fontsizeOptions}>
