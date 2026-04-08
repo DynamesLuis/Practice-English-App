@@ -1,4 +1,4 @@
-package com.example.practiceEnglishApp.auth.DTO;
+package com.example.practiceEnglishApp.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,6 +11,4 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AuthResponse {
     public String token;
-    public Long id;
-    public String email;
 }
