@@ -1,11 +1,12 @@
 import { RouterProvider } from "react-router-dom"
 import { routes } from "./routes.jsx"
-//import LoginPage from "./pages/LoginPage.jsx"
+import { AuthProvider } from "../src/auth/context/AuthProvider.jsx"
 
 function App() {
   return (
-    <RouterProvider router={routes} />
-    //<LoginPage/>
+    <AuthProvider>
+      <RouterProvider router={routes} />
+    </AuthProvider>
   )
 }
 

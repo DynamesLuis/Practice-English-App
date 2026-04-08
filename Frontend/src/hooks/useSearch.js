@@ -1,1 +1,0 @@
-// generar custom hook para peticion de api de los textos
