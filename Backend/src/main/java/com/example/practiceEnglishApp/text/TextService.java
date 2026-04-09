@@ -1,6 +1,7 @@
 package com.example.practiceEnglishApp.text;
 
-import jakarta.persistence.EntityNotFoundException;
+import com.example.practiceEnglishApp.auth.AuthService;
+import com.example.practiceEnglishApp.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -8,59 +9,65 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Random;
 
 @Service
 public class TextService {
     private final TextRepository textRepository;
+    private final AuthService authService;
     private final Random random = new Random();
 
     @Autowired
-    public TextService(TextRepository textRepository) {
+    public TextService(TextRepository textRepository,
+                       AuthService authService) {
         this.textRepository = textRepository;
+        this.authService = authService;
     }
 
     public Page<Text> getTexts(int page, int size) {
+        User user = authService.getCurrentUser();
         Pageable pageable = PageRequest.of(page, size);
-        return textRepository.findAll(pageable);
+        return textRepository.findByUser(user, pageable);
     }
 
     public Page<Text> getOneText(String title, int page, int size) {
+        User user = authService.getCurrentUser();
         Pageable pageable = PageRequest.of(page, size);
-        return textRepository.findByTitleContaining(title, pageable);
+        return textRepository.findByUserAndTitleContainingIgnoreCase(user, title, pageable);
     }
 
     public Text getRandomText() {
-        Long maxId = textRepository.findMaxId();
+        User user = authService.getCurrentUser();
+        Long maxId = textRepository.findMaxIdByUser(user);
         if (maxId == null) {
             throw new RuntimeException("No texts in database");
         }
         long randomId = 1 + random.nextLong(maxId);
-        return textRepository.findFirstByIdGreaterThanEqual(randomId)
-                .orElseGet(() -> textRepository.findFirstByOrderByIdAsc().orElseThrow());
+        return textRepository.findFirstByUserAndIdGreaterThanEqual(user, randomId)
+                .orElseGet(() -> textRepository.findFirstByUserOrderByIdAsc(user).orElseThrow());
     }
 
     public Text addNewText(Text text) {
+        User user = authService.getCurrentUser();
         text.setTitle(normalize(text.getTitle()));
+        text.setUser(user);
         return textRepository.save(text);
     }
 
     public void deleteText(Long textId) {
-        boolean textExisted = textRepository.existsById(textId);
+        User user = authService.getCurrentUser();
+        Text text = textRepository.findByIdAndUser(textId, user)
+                .orElseThrow(() -> new RuntimeException("Text not found"));
 
-        if (!textExisted) {
-            throw new EntityNotFoundException("The text with id " + textId + " doesn't exist");
-        }
-        textRepository.deleteById(textId);
+        textRepository.delete(text);
     }
 
     @Transactional
     public Text updateText(Long textId, String title, String text) {
-        Text existingText = textRepository.findById(textId)
-                .orElseThrow(()->  new EntityNotFoundException("The text with id " + textId + "doesn't exist"));
+        User user = authService.getCurrentUser();
+        Text existingText =textRepository.findByIdAndUser(textId, user)
+                .orElseThrow(() -> new RuntimeException("Text not found"));
 
         if (title != null &&
                 !title.isEmpty() &&

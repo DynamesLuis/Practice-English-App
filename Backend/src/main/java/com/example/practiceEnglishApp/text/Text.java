@@ -1,5 +1,7 @@
 package com.example.practiceEnglishApp.text;
 
+import com.example.practiceEnglishApp.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -20,6 +22,10 @@ public class Text {
     private String title;
     @Column(columnDefinition = "TEXT")
     private String text;
+    @ManyToOne()
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
+    private User user;
 
     public Text() {
 
@@ -51,6 +57,10 @@ public class Text {
         this.text = text;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public long getId() {
         return id;
     }
@@ -61,6 +71,10 @@ public class Text {
 
     public String getTitle() {
         return title;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     @Override

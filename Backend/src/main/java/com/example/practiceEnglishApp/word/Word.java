@@ -2,6 +2,8 @@ package com.example.practiceEnglishApp.word;
 
 import com.example.practiceEnglishApp.definition.Definition;
 import com.example.practiceEnglishApp.examples.Example;
+import com.example.practiceEnglishApp.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -27,6 +29,10 @@ public class Word {
     private Set<Definition> definitions = new HashSet<>();
     @OneToMany(mappedBy = "word", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Example> examples = new HashSet<>();
+    @ManyToOne()
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
+    private User user;
 
     public Word() {
 
@@ -56,6 +62,10 @@ public class Word {
         return examples;
     }
 
+    public User getUser() {
+        return user;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -70,6 +80,10 @@ public class Word {
 
     public void setExamples(Set<Example> examples) {
         this.examples = examples;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void addDefinition(Definition definition) {

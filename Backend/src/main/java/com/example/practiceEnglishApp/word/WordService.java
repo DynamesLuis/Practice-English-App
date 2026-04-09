@@ -1,8 +1,9 @@
 package com.example.practiceEnglishApp.word;
 
+import com.example.practiceEnglishApp.auth.AuthService;
 import com.example.practiceEnglishApp.definition.Definition;
 import com.example.practiceEnglishApp.examples.Example;
-import jakarta.persistence.EntityNotFoundException;
+import com.example.practiceEnglishApp.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,35 +17,43 @@ import java.util.stream.Collectors;
 @Service
 public class WordService {
     private final WordRepository wordRepository;
+    private final AuthService authService;
     private final Random random = new Random();
 
     @Autowired
-    public WordService(WordRepository wordRepository) {
+    public WordService(WordRepository wordRepository,
+                        AuthService authService) {
         this.wordRepository = wordRepository;
+        this.authService = authService;
     }
 
     public Page<Word> getWords(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        return wordRepository.findAll(pageable);
+        User user = authService.getCurrentUser();
+        return wordRepository.findByUser(user, pageable);
     }
 
     public Page<Word> getWordByWord(String word, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        return wordRepository.findByWordContaining(word, pageable);
+        User user = authService.getCurrentUser();
+        return wordRepository.findByUserAndWordContainingIgnoreCase(user ,word, pageable);
     }
 
     public Word getRandomWord() {
-        Long maxId = wordRepository.findMaxId();
+        User user = authService.getCurrentUser();
+        Long maxId = wordRepository.findMaxIdByUser(user);
         if (maxId == null) {
             throw new RuntimeException("No words in database");
         }
         long randomId = 1 + random.nextLong(maxId);
         return wordRepository
-                .findFirstByIdGreaterThanEqual(randomId)
-                .orElseGet(() -> wordRepository.findFirstByOrderByIdAsc().orElseThrow());
+                .findFirstByUserAndIdGreaterThanEqual(user,randomId)
+                .orElseGet(() -> wordRepository.findFirstByUserOrderByIdAsc(user).orElseThrow());
     }
 
     public Word addWord(Word newWord) {
+        User user = authService.getCurrentUser();
+
         if ((newWord.getDefinitions() == null || newWord.getDefinitions().isEmpty()) ||
             (newWord.getExamples() == null || newWord.getExamples().isEmpty())) {
             throw new IllegalArgumentException("A word must have at least one definition and one example.");
@@ -60,27 +69,27 @@ public class WordService {
             example.setWord(newWord);
         }
 
+        newWord.setUser(user);
         return wordRepository.save(newWord);
     }
 
     public void deleteWord(Long wordId) {
-        boolean wordExisted = wordRepository.existsById(wordId);
-
-        if (!wordExisted) {
-            throw new EntityNotFoundException("The word with id " + wordId + " doesn't exist");
-        }
-        wordRepository.deleteById(wordId);
+        User user = authService.getCurrentUser();
+        Word word = wordRepository.findByIdAndUser(wordId, user)
+                .orElseThrow(() -> new RuntimeException("Word not found"));
+        wordRepository.delete(word);
     }
 
     @Transactional
     public Word updateWord(Long wordId, Word wordToUpdate) {
-        Word existingWord = wordRepository.findById(wordId)
-                .orElseThrow(() -> new EntityNotFoundException("The word with id " + wordId + " does not exist"));
+        User user = authService.getCurrentUser();
+        Word word = wordRepository.findByIdAndUser(wordId, user)
+                .orElseThrow(() -> new RuntimeException("Word not found"));
 
         if (wordToUpdate.getWord() != null &&
                 !wordToUpdate.getWord().isEmpty() &&
-                !Objects.equals(existingWord.getWord(), wordToUpdate.getWord())) {
-            existingWord.setWord(wordToUpdate.getWord());
+                !Objects.equals(word.getWord(), wordToUpdate.getWord())) {
+            word.setWord(wordToUpdate.getWord());
         }
 
         if(wordToUpdate.getDefinitions().isEmpty()){
@@ -91,10 +100,10 @@ public class WordService {
             throw new RuntimeException("At least one example required");
         }
 
-        updateDefinitions(existingWord, wordToUpdate.getDefinitions());
-        updateExamples(existingWord, wordToUpdate.getExamples());
+        updateDefinitions(word, wordToUpdate.getDefinitions());
+        updateExamples(word, wordToUpdate.getExamples());
 
-        return wordRepository.save(existingWord);
+        return wordRepository.save(word);
     }
 
     private void  updateDefinitions(Word existingWord, Set<Definition> incomingDefinitions) {

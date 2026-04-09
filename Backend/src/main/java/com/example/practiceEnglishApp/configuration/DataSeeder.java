@@ -6,11 +6,15 @@ import com.example.practiceEnglishApp.examples.Example;
 import com.example.practiceEnglishApp.examples.ExampleRepository;
 import com.example.practiceEnglishApp.text.Text;
 import com.example.practiceEnglishApp.text.TextRepository;
+import com.example.practiceEnglishApp.user.Role;
+import com.example.practiceEnglishApp.user.User;
+import com.example.practiceEnglishApp.user.UserRepository;
 import com.example.practiceEnglishApp.word.Word;
 import com.example.practiceEnglishApp.word.WordRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
@@ -20,8 +24,18 @@ public class DataSeeder {
     CommandLineRunner commandLineRunner(TextRepository textRepository,
                                         WordRepository wordRepository,
                                         DefinitionRepository definitionRepository,
-                                        ExampleRepository exampleRepository) {
+                                        ExampleRepository exampleRepository,
+                                        UserRepository userRepository,
+                                        PasswordEncoder passwordEncoder) {
         return args -> {
+            User user = User.builder()
+                    .username("gaborex")
+                    .password(passwordEncoder.encode("12345"))
+                    .role(Role.USER)
+                    .build();
+
+            userRepository.save(user);
+
             Word word1 = new Word("serendipity");
             Word word2 = new Word("gorgeous");
             Word word3 = new Word("reluctant");
@@ -37,6 +51,12 @@ public class DataSeeder {
             Example example3 = new Example("She was reluctant to speak in front of the entire class");
             Example example4 = new Example("The outcome of the experiment surprised the researchers");
             Example example5 = new Example("It is important to maintain good communication with your team");
+            word1.setUser(user);
+            word2.setUser(user);
+            word3.setUser(user);
+            word4.setUser(user);
+            word5.setUser(user);
+
             word1.addDefinition(def1);
             word1.addExample(example1);
             word2.addDefinition(def2);
@@ -55,6 +75,11 @@ public class DataSeeder {
             Text text3 = new Text("random adventure", "some some text");
             Text text4 = new Text("my family is happy", "toooo much text");
             Text text5 = new Text("god bless you", "i don't lnow what to write");
+            text1.setUser(user);
+            text2.setUser(user);
+            text3.setUser(user);
+            text4.setUser(user);
+            text5.setUser(user);
             textRepository.saveAll(List.of(text1, text2, text3, text4, text5));
         };
     }
