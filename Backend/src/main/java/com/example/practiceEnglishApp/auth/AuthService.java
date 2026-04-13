@@ -9,6 +9,7 @@ import com.example.practiceEnglishApp.user.User;
 import com.example.practiceEnglishApp.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,12 +26,23 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
 
     public AuthResponse login(LoginRequest request) {
-       authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-       UserDetails user = userRepository.findByUsername(request.getUsername()).orElseThrow();
-       String token = jwtService.getToken(user);
-       return AuthResponse.builder()
-               .token(token)
-               .build();
+       try {
+           Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                   request.getUsername(),
+                   request.getPassword())
+           );
+//       UserDetails user = userRepository
+//               .findByUsername(
+//                       request.getUsername())
+//               .orElseThrow(() -> new RuntimeException("Invalid Credentials"));
+           UserDetails user = (UserDetails) authentication.getPrincipal();
+           String token = jwtService.getToken(user);
+           return AuthResponse.builder()
+                   .token(token)
+                   .build();
+       } catch (BadCredentialsException e) {
+           throw new RuntimeException("Invalid Credentials");
+       }
     }
 
     public AuthResponse register(RegisterRequest request) {
