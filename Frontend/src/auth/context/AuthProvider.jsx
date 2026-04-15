@@ -14,8 +14,6 @@ export function AuthProvider({ children }) {
     async function handleLogin(username, password) {
         const response = await login(username, password);
         const token = response.data.token;
-        console.log(token);
-        
         setToken(token);
 
         localStorage.setItem("token", token);
@@ -29,3 +27,4 @@ export function AuthProvider({ children }) {
         </AuthContext.Provider>
     )
 }
+
