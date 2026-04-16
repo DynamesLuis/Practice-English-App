@@ -19,7 +19,8 @@ export default function LoginPage() {
             navigate("/home");
 
         } catch (err) {
-            setError(err.message);
+            const message = err.response?.data.error || "Login failed";
+            setError(message);
         }
 
     }
@@ -40,6 +41,7 @@ export default function LoginPage() {
                     <div className={styles.inputGroup}>
                         <input type="text" placeholder="username" value={username} required onChange={(e) => setUsername(e.target.value)} />
                         <input type="password" placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+                        {error && <p style={{ color: "red",marginTop: "5px" }}>{error}</p>}
                     </div>
                     <div className={styles.formOptions}>
                         <label className={styles.checkbox}>
@@ -58,7 +60,6 @@ export default function LoginPage() {
                     <a href="#"> Terms</a> and
                     <a href="#"> Privacy Policy</a>.
                 </p>
-                {error && <p style={{ color: "red" }}>{error}</p>}
             </div>
         </main>
     )
