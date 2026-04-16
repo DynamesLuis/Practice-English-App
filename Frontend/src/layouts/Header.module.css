@@ -1,7 +1,7 @@
 .header {
     display: flex;
     justify-content: space-between;
-    padding: 2em;
+    padding: 1.8rem;
     position: relative;
     border-bottom: 1px solid var(--header-bottom);
 }
@@ -84,6 +84,18 @@ nav div.isOpen {
 
 .sesion {
     order: 2;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+
+    & svg {
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+}
+
+.sesion:hover {
+    animation: tilt-shaking 0.5s ease-in-out infinite;
 }
 
 @media (min-width: 1024px) {
@@ -100,5 +112,27 @@ nav div.isOpen {
     .header nav>div {
         display: flex;
         gap: 1em;
+    }
+}
+
+@keyframes tilt-shaking {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(5deg);
+    }
+
+    50% {
+        transform: rotate(0eg);
+    }
+
+    75% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
     }
 }

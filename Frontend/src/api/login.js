@@ -10,5 +10,5 @@ const login = async (username, password) => {
 }
 
 export {
-    login
+    login,
 }
