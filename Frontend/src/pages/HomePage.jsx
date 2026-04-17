@@ -16,25 +16,17 @@ export default function HomePage() {
             </svg>
           </span>
           <div>
-            <p>Words learned</p>
+            <p>Words Added</p>
             <p>100</p>
           </div>
         </div>
         <div className={styles.div2}>
           <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-              className="icon icon-tabler icons-tabler-outline icon-tabler-stopwatch">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M5 13a7 7 0 1 0 14 0a7 7 0 0 0 -14 0z" />
-              <path d="M14.5 10.5l-2.5 2.5" />
-              <path d="M17 8l1 -1" />
-              <path d="M14 3h-4" />
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-book-2"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12" /><path d="M19 16h-12a2 2 0 0 0 -2 2" /><path d="M9 8h6" /></svg>
           </span>
           <div>
-            <p>Reading time</p>
-            <p>78h 32m</p>
+            <p>Texts added</p>
+            <p>78</p>
           </div>
         </div>
         <div className={styles.div3}>
@@ -54,14 +46,7 @@ export default function HomePage() {
         </div>
         <div className={styles.div4}>
           <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-              classn="icon icon-tabler icons-tabler-outline icon-tabler-book-2">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M19 4v16h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12z" />
-              <path d="M19 16h-12a2 2 0 0 0 -2 2" />
-              <path d="M9 8h6" />
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-book"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path d="M3 6l0 13" /><path d="M12 6l0 13" /><path d="M21 6l0 13" /></svg>
           </span>
           <div>
             <p>Text read</p>
