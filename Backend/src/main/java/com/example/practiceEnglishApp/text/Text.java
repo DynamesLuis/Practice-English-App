@@ -4,6 +4,8 @@ import com.example.practiceEnglishApp.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table
 public class Text {
@@ -26,6 +28,10 @@ public class Text {
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
     private User user;
+
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
 
     public Text() {
 
@@ -75,6 +81,11 @@ public class Text {
 
     public User getUser() {
         return user;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = LocalDateTime.now();
     }
 
     @Override

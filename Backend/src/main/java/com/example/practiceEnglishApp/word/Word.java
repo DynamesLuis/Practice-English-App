@@ -6,6 +6,7 @@ import com.example.practiceEnglishApp.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,6 +34,8 @@ public class Word {
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
     private User user;
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
     public Word() {
 
@@ -104,6 +107,11 @@ public class Word {
     public void removeExample(Example example) {
         examples.remove(example);
         example.setWord(null);
+    }
+
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = LocalDateTime.now();
     }
 
     @Override

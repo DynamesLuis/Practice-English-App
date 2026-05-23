@@ -1,5 +1,8 @@
 package com.example.practiceEnglishApp.word;
 
+import com.example.practiceEnglishApp.activityLog.ActivityService;
+import com.example.practiceEnglishApp.activityLog.ActivityType;
+import com.example.practiceEnglishApp.activityLog.EntityType;
 import com.example.practiceEnglishApp.auth.AuthService;
 import com.example.practiceEnglishApp.definition.Definition;
 import com.example.practiceEnglishApp.examples.Example;
@@ -19,12 +22,15 @@ public class WordService {
     private final WordRepository wordRepository;
     private final AuthService authService;
     private final Random random = new Random();
+    private final ActivityService activityService;
 
     @Autowired
     public WordService(WordRepository wordRepository,
-                        AuthService authService) {
+                       AuthService authService,
+                       ActivityService activityService) {
         this.wordRepository = wordRepository;
         this.authService = authService;
+        this.activityService = activityService;
     }
 
     public Page<Word> getWords(int page, int size) {
@@ -46,9 +52,16 @@ public class WordService {
             throw new RuntimeException("No words in database");
         }
         long randomId = 1 + random.nextLong(maxId);
-        return wordRepository
+        Word word = wordRepository
                 .findFirstByUserAndIdGreaterThanEqual(user,randomId)
                 .orElseGet(() -> wordRepository.findFirstByUserOrderByIdAsc(user).orElseThrow());
+        activityService.logActivity(
+                user,
+                ActivityType.VIEW,
+                EntityType.WORD,
+                word.getId()
+        );
+        return word;
     }
 
     public Word addWord(Word newWord) {
@@ -70,7 +83,16 @@ public class WordService {
         }
 
         newWord.setUser(user);
-        return wordRepository.save(newWord);
+        Word saved = wordRepository.save(newWord);
+
+        activityService.logActivity(
+                user,
+                ActivityType.ADD,
+                EntityType.WORD,
+                saved.getId()
+        );
+
+        return saved;
     }
 
     public void deleteWord(Long wordId) {
@@ -78,6 +100,12 @@ public class WordService {
         Word word = wordRepository.findByIdAndUser(wordId, user)
                 .orElseThrow(() -> new RuntimeException("Word not found"));
         wordRepository.delete(word);
+        activityService.logActivity(
+                user,
+                ActivityType.DELETE,
+                EntityType.WORD,
+                word.getId()
+        );
     }
 
     @Transactional
@@ -103,7 +131,16 @@ public class WordService {
         updateDefinitions(word, wordToUpdate.getDefinitions());
         updateExamples(word, wordToUpdate.getExamples());
 
-        return wordRepository.save(word);
+        Word updated = wordRepository.save(word);
+
+        activityService.logActivity(
+                user,
+                ActivityType.EDIT,
+                EntityType.WORD,
+                updated.getId()
+        );
+
+        return updated;
     }
 
     private void  updateDefinitions(Word existingWord, Set<Definition> incomingDefinitions) {
@@ -126,7 +163,7 @@ public class WordService {
         existingDefinitions.addAll(resultDefinitions);
     }
 
-    public void updateExamples(Word existingWord, Set<Example> incomingExamples) {
+    private void updateExamples(Word existingWord, Set<Example> incomingExamples) {
         Set<Example> existingExamples = existingWord.getExamples();
         Map<Long, Example> existingMap = existingExamples.stream()
                 .filter(example -> example.getId() != null)

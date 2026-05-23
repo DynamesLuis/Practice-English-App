@@ -1,5 +1,6 @@
 package com.example.practiceEnglishApp.configuration;
 
+import com.example.practiceEnglishApp.activityLog.*;
 import com.example.practiceEnglishApp.definition.Definition;
 import com.example.practiceEnglishApp.definition.DefinitionRepository;
 import com.example.practiceEnglishApp.examples.Example;
@@ -26,7 +27,8 @@ public class DataSeeder {
                                         DefinitionRepository definitionRepository,
                                         ExampleRepository exampleRepository,
                                         UserRepository userRepository,
-                                        PasswordEncoder passwordEncoder) {
+                                        PasswordEncoder passwordEncoder,
+                                        ActivityLogRepository activityLogRepository) {
         return args -> {
             User user = User.builder()
                     .username("gaborex")
@@ -81,6 +83,58 @@ public class DataSeeder {
             text4.setUser(user);
             text5.setUser(user);
             textRepository.saveAll(List.of(text1, text2, text3, text4, text5));
+
+            ActivityLog log1 = new ActivityLog();
+            log1.setUser(user);
+            log1.setActivity_type(ActivityType.ADD);
+            log1.setEntity_type(EntityType.WORD);
+            log1.setEntityId(word1.getId());
+            ActivityLog log2 = new ActivityLog();
+            log2.setUser(user);
+            log2.setActivity_type(ActivityType.ADD);
+            log2.setEntity_type(EntityType.WORD);
+            log2.setEntityId(word2.getId());
+            ActivityLog log3 = new ActivityLog();
+            log3.setUser(user);
+            log3.setActivity_type(ActivityType.ADD);
+            log3.setEntity_type(EntityType.WORD);
+            log3.setEntityId(word3.getId());
+            ActivityLog log4 = new ActivityLog();
+            log4.setUser(user);
+            log4.setActivity_type(ActivityType.ADD);
+            log4.setEntity_type(EntityType.WORD);
+            log4.setEntityId(word4.getId());
+            ActivityLog log5 = new ActivityLog();
+            log5.setUser(user);
+            log5.setActivity_type(ActivityType.ADD);
+            log5.setEntity_type(EntityType.WORD);
+            log5.setEntityId(word5.getId());
+            ActivityLog log6 = new ActivityLog();
+            log6.setUser(user);
+            log6.setActivity_type(ActivityType.ADD);
+            log6.setEntity_type(EntityType.TEXT);
+            log6.setEntityId(text1.getId());
+            ActivityLog log7 = new ActivityLog();
+            log7.setUser(user);
+            log7.setActivity_type(ActivityType.ADD);
+            log7.setEntity_type(EntityType.TEXT);
+            log7.setEntityId(text2.getId());
+            ActivityLog log8 = new ActivityLog();
+            log8.setUser(user);
+            log8.setActivity_type(ActivityType.ADD);
+            log8.setEntity_type(EntityType.TEXT);
+            log8.setEntityId(text3.getId());
+            ActivityLog log9 = new ActivityLog();
+            log9.setUser(user);
+            log9.setActivity_type(ActivityType.ADD);
+            log9.setEntity_type(EntityType.TEXT);
+            log9.setEntityId(text4.getId());
+            ActivityLog log10 = new ActivityLog();
+            log10.setUser(user);
+            log10.setActivity_type(ActivityType.ADD);
+            log10.setEntity_type(EntityType.TEXT);
+            log10.setEntityId(text5.getId());
+            activityLogRepository.saveAll(List.of(log1, log2, log3, log4, log5, log6, log7, log8, log9, log10));
         };
     }
 }

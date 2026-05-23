@@ -19,4 +19,5 @@ public interface TextRepository extends JpaRepository<Text, Long> {
     Optional<Text> findFirstByUserAndIdGreaterThanEqual(User user,Long id);
     Optional<Text> findFirstByUserOrderByIdAsc(User user);
     Optional<Text> findByIdAndUser(Long id, User user);
+    int countByUserId(Long userId);
 }

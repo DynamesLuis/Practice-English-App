@@ -1,5 +1,8 @@
 package com.example.practiceEnglishApp.text;
 
+import com.example.practiceEnglishApp.activityLog.ActivityService;
+import com.example.practiceEnglishApp.activityLog.ActivityType;
+import com.example.practiceEnglishApp.activityLog.EntityType;
 import com.example.practiceEnglishApp.auth.AuthService;
 import com.example.practiceEnglishApp.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +20,15 @@ public class TextService {
     private final TextRepository textRepository;
     private final AuthService authService;
     private final Random random = new Random();
+    private final ActivityService activityService;
 
     @Autowired
     public TextService(TextRepository textRepository,
-                       AuthService authService) {
+                       AuthService authService,
+                       ActivityService activityService) {
         this.textRepository = textRepository;
         this.authService = authService;
+        this.activityService = activityService;
     }
 
     public Page<Text> getTexts(int page, int size) {
@@ -44,15 +50,32 @@ public class TextService {
             throw new RuntimeException("No texts in database");
         }
         long randomId = 1 + random.nextLong(maxId);
-        return textRepository.findFirstByUserAndIdGreaterThanEqual(user, randomId)
+        Text text = textRepository.findFirstByUserAndIdGreaterThanEqual(user, randomId)
                 .orElseGet(() -> textRepository.findFirstByUserOrderByIdAsc(user).orElseThrow());
+
+        activityService.logActivity(
+                user,
+                ActivityType.READ,
+                EntityType.TEXT,
+                text.getId()
+                );
+
+        return text;
     }
 
     public Text addNewText(Text text) {
         User user = authService.getCurrentUser();
         text.setTitle(normalize(text.getTitle()));
         text.setUser(user);
-        return textRepository.save(text);
+        Text saved = textRepository.save(text);
+        activityService.logActivity(
+                user,
+                ActivityType.ADD,
+                EntityType.TEXT,
+                saved.getId()
+        );
+
+        return saved;
     }
 
     public void deleteText(Long textId) {
@@ -61,6 +84,12 @@ public class TextService {
                 .orElseThrow(() -> new RuntimeException("Text not found"));
 
         textRepository.delete(text);
+        activityService.logActivity(
+                user,
+                ActivityType.DELETE,
+                EntityType.TEXT,
+                text.getId()
+        );
     }
 
     @Transactional
@@ -80,6 +109,13 @@ public class TextService {
                 !Objects.equals(existingText.getText(), text)) {
             existingText.setText(text);
         }
+
+        activityService.logActivity(
+                user,
+                ActivityType.EDIT,
+                EntityType.TEXT,
+                existingText.getId()
+        );
 
         return existingText;
     }
