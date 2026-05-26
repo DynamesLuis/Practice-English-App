@@ -1,6 +1,28 @@
 import styles from "./HomePage.module.css"
+import { getDashboard } from "../api/fetchDashboard";
+import { useQuery } from "@tanstack/react-query";
 
 export default function HomePage() {
+  const {
+    data: dashboard,
+    isLoading: isLoadingWord,
+    isError: isErrorDashboard,
+    error: errorDashboard,
+    refetch: refetchDashboard,
+    isRefetching: isRefetchingDashboard,
+  } = useQuery({
+    queryKey: ['dashboard'],
+    queryFn: getDashboard,
+    refetchOnMount: false,
+  });
+
+  console.log(dashboard);
+  
+
+  if (isLoadingWord) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <main className={styles.homePage}>
       <h2>Your progress</h2>
@@ -17,7 +39,7 @@ export default function HomePage() {
           </span>
           <div>
             <p>Words Added</p>
-            <p>100</p>
+            <p>{dashboard.data.totalWords}</p>
           </div>
         </div>
         <div className={styles.div2}>
@@ -26,7 +48,7 @@ export default function HomePage() {
           </span>
           <div>
             <p>Texts added</p>
-            <p>78</p>
+            <p>{dashboard.data.totalTexts}</p>
           </div>
         </div>
         <div className={styles.div3}>
@@ -41,7 +63,7 @@ export default function HomePage() {
           </span>
           <div>
             <p>Current streak</p>
-            <p>42 days</p>
+            <p>{dashboard.data.streak} days</p>
           </div>
         </div>
         <div className={styles.div4}>
@@ -50,14 +72,14 @@ export default function HomePage() {
           </span>
           <div>
             <p>Text read</p>
-            <p>7</p>
+            <p>{dashboard.data.textsRead}</p>
           </div>
         </div>
 
         <div className={styles.div5}>
           <h4>Your week goal</h4>
-          <progress max={10} value={7}></progress>
-          <p>7/10 words</p>
+          <progress max={10} value={dashboard.data.progress}></progress>
+          <p>{dashboard.data.progress}/10 words</p>
         </div>
         <div className={styles.div6}>
           <h4>Recent activity</h4>
