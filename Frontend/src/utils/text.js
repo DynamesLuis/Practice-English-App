@@ -8,7 +8,14 @@ function normalize(text) {
     return text.toLowerCase()
 }
 
+function capitalizeFirstLetter(text) {
+  if (!text) return "";
+
+  return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+}
+
 export {
     capitalize,
-    normalize
+    normalize,
+    capitalizeFirstLetter
 }

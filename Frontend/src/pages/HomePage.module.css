@@ -138,11 +138,11 @@
 }
 
 .wordActivity span {
-    background: var(--red-light);
+    background: var(--primary-light);
 }
 
 .textActivity span {
-    background: var(--primary-light);
+    background: var(--red-light);
 }
 
 .wordActivity>div p:first-child,
