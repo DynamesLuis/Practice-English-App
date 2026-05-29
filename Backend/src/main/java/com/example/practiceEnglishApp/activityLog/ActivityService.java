@@ -2,6 +2,7 @@ package com.example.practiceEnglishApp.activityLog;
 
 import com.example.practiceEnglishApp.auth.AuthService;
 import com.example.practiceEnglishApp.dto.DashboardResponse;
+import com.example.practiceEnglishApp.text.Text;
 import com.example.practiceEnglishApp.text.TextRepository;
 import com.example.practiceEnglishApp.user.User;
 import com.example.practiceEnglishApp.word.Word;
@@ -31,6 +32,7 @@ public class ActivityService {
         long todayProgress = countTodayActivity(user.getId());
         List<ActivityLog> recentActivity = getRecentActivity(user.getId());
         List<Word> newWords = getRecentWords(user.getId());
+        List<Text> newTexts = getRecentTexts(user.getId());
         return DashboardResponse.builder()
                 .totalWords(totalWord)
                 .totalTexts(totalTexts)
@@ -39,6 +41,7 @@ public class ActivityService {
                 .progress(todayProgress)
                 .recentActivity(recentActivity)
                 .newWords(newWords)
+                .newTexts(newTexts)
                 .build();
     }
 
@@ -95,5 +98,9 @@ public class ActivityService {
 
     private List<Word> getRecentWords(Long userId) {
         return wordRepository.findTop5ByUserIdOrderByCreatedAtDesc(userId);
+    }
+
+    private List<Text> getRecentTexts(Long userId) {
+        return textRepository.findTop5ByUserIdOrderByCreatedAtDesc(userId);
     }
 }

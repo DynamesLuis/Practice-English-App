@@ -1,6 +1,7 @@
 package com.example.practiceEnglishApp.dto;
 
 import com.example.practiceEnglishApp.activityLog.ActivityLog;
+import com.example.practiceEnglishApp.text.Text;
 import com.example.practiceEnglishApp.word.Word;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,4 +22,5 @@ public class DashboardResponse {
     public long progress;
     public List<ActivityLog> recentActivity;
     public List<Word> newWords;
+    public List<Text> newTexts;
 }

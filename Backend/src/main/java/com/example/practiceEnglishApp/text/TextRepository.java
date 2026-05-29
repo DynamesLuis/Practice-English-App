@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -20,4 +21,5 @@ public interface TextRepository extends JpaRepository<Text, Long> {
     Optional<Text> findFirstByUserOrderByIdAsc(User user);
     Optional<Text> findByIdAndUser(Long id, User user);
     int countByUserId(Long userId);
+    List<Text> findTop5ByUserIdOrderByCreatedAtDesc(Long userId);
 }
