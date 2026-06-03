@@ -4,9 +4,6 @@ import WordPreview from "./WordPreview"
 
 
 export default function StudyWordSection({ setAnswerIsShow, answerIsShow, isLoading, isError, error, word, isRefetching }) {
-
-
-
   const handleShowBtn = () => {
     setAnswerIsShow(true)
   }

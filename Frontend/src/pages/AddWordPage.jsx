@@ -26,7 +26,6 @@ export default function AddWordPage() {
       const response = await getWords(currentPage - 1, RESULTS_PER_PAGE);
       setWords(response.data.content)
       setTotalPages(response.data.totalPages)
-      console.log("fetching words");
 
     } catch (error) {
       console.error(error)

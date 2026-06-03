@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import { postWord, putWord } from "../../api/wordService"
+import { useQueryClient } from "@tanstack/react-query"
+import { queryKeys } from "../../api/queryKeys"
 
 function generateId() {
     return crypto.randomUUID()
@@ -97,6 +99,8 @@ export default function AddWordForm({ style, editingWord, setEditingWord, fetchW
             ))
     }
 
+    const queryClient = useQueryClient();
+
     const handleSubmit = (event) => {
         event.preventDefault()
         const payload = {
@@ -132,12 +136,15 @@ export default function AddWordForm({ style, editingWord, setEditingWord, fetchW
         try {
             const response = await putWord(editingWord.id, payload)
             const updatedWord = await response.data
-            setWords(prev => 
-                prev.map(currentWord => 
+            setWords(prev =>
+                prev.map(currentWord =>
                     currentWord.id === updatedWord.id ? updatedWord : currentWord
                 )
             )
             setEditingWord(null)
+            queryClient.invalidateQueries({
+                queryKey: queryKeys.dashboard,
+            })
         } catch (error) {
             console.error(error)
         }
@@ -146,12 +153,12 @@ export default function AddWordForm({ style, editingWord, setEditingWord, fetchW
     const addWord = async (newWord) => {
         try {
             const response = await postWord(newWord)
-            const createWord = response.data
-            console.log(createWord);
             if (words.length < pageSize) {
                 fetchWords()
             }
-
+            queryClient.invalidateQueries({
+                queryKey: queryKeys.dashboard,
+            })
         } catch (error) {
             console.error(error)
         }

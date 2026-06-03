@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import { postText, putText } from "../../api/textService"
+import { useQueryClient } from "@tanstack/react-query"
+import { queryKeys } from "../../api/queryKeys"
 
 export default function AddTextForm({ style, setTexts, editingText, setEditingText, fetchTexts, pageSize, texts }) {
     const isEditing = editingText !== null
@@ -40,6 +42,8 @@ export default function AddTextForm({ style, setTexts, editingText, setEditingTe
         })
     }
 
+    const queryClient = useQueryClient();
+
     const editText = async () => {
         const textId = editingText.id
         const { title, text } = formValues
@@ -48,6 +52,9 @@ export default function AddTextForm({ style, setTexts, editingText, setEditingTe
             const updatedText = await response.data
             setTexts(prev => prev.map(prevText => prevText.id === updatedText.id ? { ...prevText, title: title, text: text } : prevText))
             setEditingText(null)
+            queryClient.invalidateQueries({
+                queryKey: queryKeys.dashboard
+            })
         } catch (error) {
             console.error(error)
         }
@@ -56,11 +63,12 @@ export default function AddTextForm({ style, setTexts, editingText, setEditingTe
     const addNewText = async () => {
         try {
             const response = await postText(formValues)
-            const textAdded = response.data
-            console.log(textAdded);
             if (texts.length < pageSize) {
                 fetchTexts()
             }
+            queryClient.invalidateQueries({
+                queryKey: queryKeys.dashboard
+            })
         } catch (error) {
             console.error(error)
         }

@@ -1,11 +1,21 @@
+import { useQueryClient } from "@tanstack/react-query";
 import styles from "./CardOptions.module.css"
+import { queryKeys } from "../../api/queryKeys"
 
-export default function CardOptions({fetchRandomWord, fetchRandomText, isPracticeWord, setAnswerIsShow}) {
-    const handleNext = () => {
-        if(isPracticeWord) {
-            fetchRandomWord()
+export default function CardOptions({ fetchRandomWord, fetchRandomText, isPracticeWord, setAnswerIsShow }) {
+    const queryClient = useQueryClient();
+
+    const handleNext = async () => {
+        if (isPracticeWord) {
+            await fetchRandomWord()
+            queryClient.invalidateQueries({
+                queryKey: queryKeys.dashboard
+            })
         } else {
-            fetchRandomText()
+            await fetchRandomText()
+            queryClient.invalidateQueries({
+                queryKey: queryKeys.dashboard
+            })
         }
         setAnswerIsShow(false)
     }
@@ -23,7 +33,7 @@ export default function CardOptions({fetchRandomWord, fetchRandomText, isPractic
                 </svg>
                 Previous
             </button>
-            
+
             <button className={styles.nextBtn} onClick={handleNext}>
                 Next
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"

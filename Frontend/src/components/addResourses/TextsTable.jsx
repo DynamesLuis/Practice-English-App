@@ -1,7 +1,11 @@
+import { useQueryClient } from "@tanstack/react-query"
 import { deleteText } from "../../api/textService"
 import {capitalize} from "../../utils/text"
+import { queryKeys } from "../../api/queryKeys";
 
 export default function TextsTable({ textsData, setTexts, setEditingText, totalPages, fetchTexts }) {
+    const queryClient = useQueryClient();
+    
     const handleDeleteText = async (textId) => {
         try {
             await deleteText(textId)
@@ -12,6 +16,9 @@ export default function TextsTable({ textsData, setTexts, setEditingText, totalP
             } else {
                 fetchTexts()
             }
+            queryClient.invalidateQueries({
+                queryKey: queryKeys.dashboard,
+            })
         } catch (error) {
             console, error(error)
         }

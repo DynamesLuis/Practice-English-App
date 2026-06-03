@@ -1,7 +1,7 @@
 import styles from "./HomePage.module.css"
 import { getDashboard } from "../api/fetchDashboard";
 import { useQuery } from "@tanstack/react-query";
-import { capitalizeFirstLetter } from "../utils/text";
+import { capitalize, capitalizeFirstLetter } from "../utils/text";
 import { timeAgo } from "../utils/date";
 import AddIcon from "../assets/icons/ReadIcon"
 import DeleteIcon from "../assets/icons/DeleteIcon"
@@ -116,7 +116,7 @@ export default function HomePage() {
                  <Icon color={color}/>
                 </span>
                 <div>
-                  <p>{capitalizeFirstLetter(activity.activity_type)} name</p>
+                  <p>{capitalizeFirstLetter(activity.activity_type)} "{capitalize(activity.entityName)}"</p>
                   <p>{timeAgo(activity.createdAt)}</p>
                 </div>
               </div>

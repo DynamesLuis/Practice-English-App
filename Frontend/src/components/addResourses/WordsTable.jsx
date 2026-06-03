@@ -1,7 +1,11 @@
+import { useQueryClient } from "@tanstack/react-query"
 import { deleteWord } from "../../api/wordService"
 import { capitalize } from "../../utils/text"
+import { queryKeys } from "../../api/queryKeys";
 
 export default function WordsTable({ wordsData, setEditingWord, fetchWords, totalPages, setWords }) {
+    const queryClient = useQueryClient();
+    
     const handleDeleteWord = async (idWord) => {
         try {
             await deleteWord(idWord)
@@ -12,6 +16,9 @@ export default function WordsTable({ wordsData, setEditingWord, fetchWords, tota
             } else {
                 fetchWords()
             }
+            queryClient.invalidateQueries({
+                queryKey: queryKeys.dashboard
+            })
         } catch (error) {
             console.error(error)
         }
