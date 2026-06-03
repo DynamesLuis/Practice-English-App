@@ -26,7 +26,7 @@ public interface ActivityLogRepository extends JpaRepository<ActivityLog, Long> 
             AND a.activity_type = :type
             ORDER BY DATE(a.createdAt) DESC
             """)
-    List<LocalDate> findActiveDays(@Param("userId") Long userId,
+    List<java.sql.Date> findActiveDays(@Param("userId") Long userId,
                                    @Param("type") ActivityType type);
     @Query("""
             SELECT COUNT(DISTINCT a.entityId)

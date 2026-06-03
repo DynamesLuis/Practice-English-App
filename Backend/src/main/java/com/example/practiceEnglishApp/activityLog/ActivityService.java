@@ -10,6 +10,7 @@ import com.example.practiceEnglishApp.word.WordRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -48,18 +49,23 @@ public class ActivityService {
     public void logActivity(User user,
                             ActivityType type,
                             EntityType entityType,
-                            Long entityId) {
+                            Long entityId,
+                            String entityName) {
         ActivityLog newLog = new ActivityLog();
         newLog.setUser(user);
         newLog.setActivity_type(type);
         newLog.setEntity_type(entityType);
+        newLog.setEntityName(entityName);
         newLog.setEntityId(entityId);
 
         activityLogRepository.save(newLog);
     }
 
     private int calculateStreak(Long userId) {
-        List<LocalDate> activeDays = activityLogRepository.findActiveDays(userId, ActivityType.VIEW);
+        List<LocalDate> activeDays = activityLogRepository.findActiveDays(userId, ActivityType.VIEW)
+                .stream()
+                .map(Date::toLocalDate)
+                .toList();
 
         int streak = 0;
         LocalDate today = LocalDate.now();

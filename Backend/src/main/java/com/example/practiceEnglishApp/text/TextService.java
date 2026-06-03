@@ -57,7 +57,8 @@ public class TextService {
                 user,
                 ActivityType.READ,
                 EntityType.TEXT,
-                text.getId()
+                text.getId(),
+                text.getTitle()
                 );
 
         return text;
@@ -72,7 +73,8 @@ public class TextService {
                 user,
                 ActivityType.ADD,
                 EntityType.TEXT,
-                saved.getId()
+                saved.getId(),
+                saved.getTitle()
         );
 
         return saved;
@@ -88,7 +90,8 @@ public class TextService {
                 user,
                 ActivityType.DELETE,
                 EntityType.TEXT,
-                text.getId()
+                text.getId(),
+                text.getTitle()
         );
     }
 
@@ -114,7 +117,8 @@ public class TextService {
                 user,
                 ActivityType.EDIT,
                 EntityType.TEXT,
-                existingText.getId()
+                existingText.getId(),
+                existingText.getTitle()
         );
 
         return existingText;

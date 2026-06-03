@@ -29,6 +29,8 @@ public class ActivityLog {
     private EntityType entity_type;
     @Column(name = "entity_id", nullable = false)
     private Long entityId;
+    @Column(name = "entity_name", nullable = false)
+    private String entityName;
     @Enumerated(EnumType.STRING)
     @Column(name = "activity_type", nullable = false)
     private ActivityType activity_type;

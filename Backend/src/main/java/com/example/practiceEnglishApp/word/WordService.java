@@ -59,7 +59,8 @@ public class WordService {
                 user,
                 ActivityType.VIEW,
                 EntityType.WORD,
-                word.getId()
+                word.getId(),
+                word.getWord()
         );
         return word;
     }
@@ -89,7 +90,8 @@ public class WordService {
                 user,
                 ActivityType.ADD,
                 EntityType.WORD,
-                saved.getId()
+                saved.getId(),
+                saved.getWord()
         );
 
         return saved;
@@ -104,7 +106,8 @@ public class WordService {
                 user,
                 ActivityType.DELETE,
                 EntityType.WORD,
-                word.getId()
+                word.getId(),
+                word.getWord()
         );
     }
 
@@ -137,7 +140,8 @@ public class WordService {
                 user,
                 ActivityType.EDIT,
                 EntityType.WORD,
-                updated.getId()
+                updated.getId(),
+                updated.getWord()
         );
 
         return updated;
