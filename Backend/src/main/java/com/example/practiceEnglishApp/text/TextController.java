@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "api/v1/")
+@RequestMapping(path = "api/v1/text")
 public class TextController {
     private final TextService textService;
 
