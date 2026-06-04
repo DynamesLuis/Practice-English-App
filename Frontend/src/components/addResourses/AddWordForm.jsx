@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { postWord, putWord } from "../../api/wordService"
 import { useQueryClient } from "@tanstack/react-query"
 import { queryKeys } from "../../api/queryKeys"
+import {notify} from "../../api/toastService"
 
 function generateId() {
     return crypto.randomUUID()
@@ -145,22 +146,25 @@ export default function AddWordForm({ style, editingWord, setEditingWord, fetchW
             queryClient.invalidateQueries({
                 queryKey: queryKeys.dashboard,
             })
+            notify.updated(updatedWord.word)
         } catch (error) {
-            console.error(error)
+            notify.error(error.message)
         }
     }
 
     const addWord = async (newWord) => {
         try {
             const response = await postWord(newWord)
+            const addedWord = await response.data
             if (words.length < pageSize) {
                 fetchWords()
             }
             queryClient.invalidateQueries({
                 queryKey: queryKeys.dashboard,
             })
+            notify.created(addedWord.word);
         } catch (error) {
-            console.error(error)
+            notify.error(error.message)
         }
     }
 

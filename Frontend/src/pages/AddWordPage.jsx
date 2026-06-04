@@ -35,7 +35,6 @@ export default function AddWordPage() {
   const handleSearch = async (wordToFilter) => {
     try {
       const response = await getWordByWord(wordToFilter, 0, RESULTS_PER_PAGE)
-      console.log(response);
       setWords(response.data.content)
       setTotalPages(response.data.totalPages)
     } catch (error) {
